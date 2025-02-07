@@ -6,6 +6,8 @@
 
 **Date:** February 2025
 
+### LaTeX Source
+
 ```latex
 \documentclass{article}
 \usepackage{url}
@@ -2337,6 +2339,8 @@ This paper does not cover the full technical depth of \KL that has accrued over 
 
 **Date:** February 2025
 
+### LaTeX Source
+
 ```latex
 \documentclass{article}
 
@@ -3172,6 +3176,8 @@ Deeper technical white papers, as well as several research and peer-reviewed pap
 **Authors:** Pi Squared Inc.
 
 **Date:** February 2025
+
+### LaTeX Source
 
 ```latex
 \documentclass{article}
@@ -7536,6 +7542,8 @@ Now, one can follow the same recipes as for matrices, and define the finger-prin
 **Authors:** Pi Squared Inc.
 
 **Date:** February 2025
+
+### LaTeX Source
 
 ```latex
 \documentclass{article}
