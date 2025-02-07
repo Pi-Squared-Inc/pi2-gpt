@@ -1,4 +1,4 @@
-# Papers
+# Pi2 Papers
 
 ## Semantics-Based Execution and the LLVM Backend of the K Framework Version 1.0
 
