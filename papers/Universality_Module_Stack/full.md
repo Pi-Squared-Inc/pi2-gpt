@@ -4,7 +4,9 @@ Pi Squared Inc.
 
 February 2025  
 
-It is suggested that the reader frst read “The Pi Squared Whitepaper” [7].  
+It is suggested that the reader frst read “The Pi Squared Whitepaper”
+
+The link to this paper is https://pi2.network/papers/universality-whitepaper.
 
 # Abstract  
 

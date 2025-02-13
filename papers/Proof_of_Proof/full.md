@@ -1,10 +1,12 @@
-# Proof of Proof: A Universal Verifable Computing Framework Version 1.0  
+# Proof of Proof: A Universal Verifable Computing Framework
 
 Pi Squared Inc.  
 
 February 2025  
 
-It is suggested that the reader frst read “The Pi Squared Whitepaper” [3  
+It is suggested that the reader frst read “The Pi Squared Whitepaper”
+
+The link to this paper is https://pi2.network/papers/proof-of-proof-whitepaper.
 
 # Abstract  
 

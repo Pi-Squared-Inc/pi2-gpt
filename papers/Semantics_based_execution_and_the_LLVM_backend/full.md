@@ -1,10 +1,12 @@
-# Semantics-Based Execution and the LLVM Backend of the K Framework Version 1.0  
+# Semantics-Based Execution and the LLVM Backend of the K Framework
 
 Pi Squared Inc.  
 
 February 2025  
 
-It is suggested that the reader frst read “The Pi Squared Whitepaper” [3  
+It is suggested that the reader first read “The Pi Squared Whitepaper”
+
+The link to this paper is https://pi2.network/papers/llvm-k-whitepaper.
 
 # Abstract  
 
@@ -881,4 +883,4 @@ This paper does not cover the full technical depth of LLVM- $\mathbb{K}$ that ha
 [44] Eelco Visser, Zine-el-Abidine Benaissa, and Andrew Tolmach. 1998. Building program optimizers with rewriting strategies. In Proceedings of the Third ACM SIGPLAN International Conference on Functional Programming (ICFP’98). ACM, 13–26.   
 [45] Feng Wang, Fu Song, Min Zhang, Xiaoran Zhu, and Jun Zhang. 2018. KRust: A Formal Executable Semantics of Rust. In 2018 International Symposium on Theoretical Aspects of Software Engineering (TASE). 44– 51. https://doi.org/10.1109/TASE.2018.00014  
 
-[46] Thomas Wirthinger, Christian Wimmer, Christian Humer, Andreas WoB, Lukas Stadler, Chris Seaton, Gilles Duboscq, Doug Simon, and Matthias Grimmer. 2017. Practical Partial Evaluation for High-Performance Dynamic Language Runtimes. In Proceedings of the 38th ACM SIGPLAN Conference on Programming Language Design and Implementation (PLDI 2017). Association for Computing Machinery, New York, NY, USA, 662– 676. https://doi.org/10.1145/3062341.3062381  
+[^46] Thomas Wirthinger, Christian Wimmer, Christian Humer, Andreas WoB, Lukas Stadler, Chris Seaton, Gilles Duboscq, Doug Simon, and Matthias Grimmer. 2017. Practical Partial Evaluation for High-Performance Dynamic Language Runtimes. In Proceedings of the 38th ACM SIGPLAN Conference on Programming Language Design and Implementation (PLDI 2017). Association for Computing Machinery, New York, NY, USA, 662– 676. https://doi.org/10.1145/3062341.3062381  
