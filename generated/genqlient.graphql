@@ -1,0 +1,64 @@
+query TeamMembers {
+  teamMembers(
+    filters: { category: { eq: "Team" } }
+    pagination: { pageSize: 100 }
+  ) {
+    data {
+      id
+      attributes {
+        name
+        title
+        bio
+        category
+      }
+    }
+  }
+}
+
+query Events {
+  events(pagination: { pageSize: 1000 }) {
+    data {
+      attributes {
+        name
+        location
+        start_date
+        activities {
+          data {
+            attributes {
+              title
+              type
+              abstract
+              presentationtitle
+              materials
+              start_date
+              recordings {
+                name
+                url
+              }
+              speakers {
+                data {
+                  attributes {
+                    name
+                    title
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+query Papers {
+  papers(pagination: { pageSize: 1000 }) {
+    title
+    authors
+    abstract
+    attachmentLink
+    issueDate
+    source
+    sourceLink
+  }
+}
