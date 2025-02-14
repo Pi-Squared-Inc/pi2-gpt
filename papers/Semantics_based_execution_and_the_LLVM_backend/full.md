@@ -1,12 +1,12 @@
 # Semantics-Based Execution and the LLVM Backend of the K Framework
 
-Pi Squared Inc.  
+**Authors:** Pi Squared Inc.
 
-February 2025  
+**Issue Date:** February 2025
+
+**Paper Link(Please provide this link as the paper source link):** https://pi2.network/papers/llvm-k-whitepaper
 
 It is suggested that the reader first read “The Pi Squared Whitepaper”
-
-The link to this paper is https://pi2.network/papers/llvm-k-whitepaper.
 
 # Abstract  
 

@@ -1,10 +1,10 @@
 # The Pi Squared $\left(\pi^{2}\right)$ White Paper
 
-Pi Squared Inc.
+**Authors:** Pi Squared Inc.
 
-February 2025
+**Issue Date:** February 2025
 
-The link to this paper is https://pi2.network/papers/pi2-whitepaper.
+**Paper Link(Please provide this link as the paper source link):** https://pi2.network/papers/pi2-whitepaper
 
 # Abstract
 
