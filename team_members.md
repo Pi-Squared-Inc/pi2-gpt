@@ -120,15 +120,6 @@ In his role at Pi Squared Inc., Dwight focuses on providing technical oversight 
 
 ---
 
-## Nishant Rodrigues
-
-**Title:** Research Collaborator
-
-**Bio:**
-**Nishant Rodrigues** is a PhD candidate at the University of Illinois. His research interests include programming languages, formal logic and formal verification. He is also interested in integrating formal methods into traditional software development processes whether by increased automation, improved abstractions or better accessibility through nicer interfaces.
-
----
-
 ## Octavian Mircea Sebe
 
 **Title:** Software Engineer
@@ -136,15 +127,6 @@ In his role at Pi Squared Inc., Dwight focuses on providing technical oversight 
 **Bio:**
 **Mircea Sebe** graduated with a Masters in Mathematics & Computer Science from University of Birmingham in the UK. His final year project consisted of formalising the notion of string diagrams in Agda, and a framework allowing diagrammatic reasoning in a Category Theory context. He has successfully interned for Cisco, Google and Runtime Verification by developing various pieces of software including formal verification tools and networking software.
 He is interested in Proof Assistants, Programming Languages (particularly functional ones), Program Verification, and Parallel Programming.
-
----
-
-## Yan Liu
-
-**Title:** Software Engineer
-
-**Bio:**
-**Yan** received her PhD from National University of Singapore and worked in ADSC, Singapore/UIUC as a postdoc. She is interested in formal methods and programming languages. She worked as an IC on the Confidential Computing and Query Optimisation in Ant Group, Hangzhou. Prior to joining Pi Squared Inc., she was developing Rust Verification tool, [KMIR](https://github.com/runtimeverification/mir-semantics) and auditing Rust smart contracts in Runtime Verification Inc.
 
 ---
 
@@ -184,15 +166,6 @@ He is interested in Proof Assistants, Programming Languages (particularly functi
 
 ---
 
-## Miruna Roșca
-
-**Title:** Head of Cryptography
-
-**Bio:**
-**Miruna Roșca** is the Head of Cryptography at Pi Squared. Her research interests include zero-knowledge proofs, post-quantum cryptography and privacy-preserving technologies. Miruna obtained her PhD in lattice-based cryptography from Ecole Normale Supérieure de Lyon working under the direction of Damien Stehlé.
-
----
-
 ## Max Fan
 
 **Title:** Intern
@@ -226,16 +199,6 @@ He is interested in Proof Assistants, Programming Languages (particularly functi
 
 **Bio:**
 **Dmitry Vlasov** is a Verification Engineer at Pi Squared. He holds an MS in Mathematics and Logic from Novosibirsk University and a PhD in mathematical logic and model theory from the Sobolev Institute of Mathematics. In 2006, Dmitry began experimenting with Metamath and designing his own proof language based on it. He became a maintainer of the compiler for flow9 functional programming language in 2017, a role he continues today. In 2019, he rewrote the third version of his proof language entirely in flow9. Dmitry has also implemented a general algorithm for proof search in Metamath-like languages. He joined Pi Squared to apply his accumulated knowledge of proofs to the IT industry’s needs.
-
----
-
-## Sean Koo
-
-**Title:** Associate Project Manager
-
-**Bio:**
-**Sean Koo** is an Associate Project Manager at Pi Squared. He attended the University of Illinois Urbana-Champaign, where he studied Statistics and Computer Science. Sean is currently pursuing his Master’s degree in Computer Science, with plans to complete it in the upcoming semester. At Pi Squared Inc, Sean focuses on project management, driving both success and innovation. Outside of work, he enjoys organizing Esports related events.
-
 
 ---
 
@@ -319,6 +282,88 @@ In her current role at Pi Squared Inc, she is part of the Semantics Team and foc
 **Kaikai Qi** is a full-stack developer at Pi Squared Inc. He holds a degree in Computer Science and has been passionate about coding since his early days.
 He has a deep interest in leveraging the latest technologies to build intuitive and efficient applications. His work at Pi Squared Inc focuses on creating seamless user experiences by integrating cutting-edge front-end designs with robust back-end architectures.
 Outside of work, he enjoys skiing and exploring new technologies in his free time. He believes that staying curious and continuously learning is essential for growth as a developer.
+
+---
+
+## Isha Sangani
+
+**Title:** Head of Ecosystem
+
+**Bio:**
+**Isha Sangani** is the Head of Ecosystem at Pi Squared.
+Prior to joining Pi Squared, she was an early team member at Matter Labs, where she played a pivotal role in the growth and scaling of its ecosystem.
+Isha has founded two companies and actively supports several projects focused on building resilient, censorship-resistant networks that safeguard freedom and autonomy at their core.
+
+---
+
+## Prince Onyeanuna
+
+**Title:** Technical Writer
+
+**Bio:**
+[**Prince Onyeanuna**](https://aahil-portfolio.netlify.app/), widely known as Aahil, is a dedicated technical writer at Pi Squared, with a strong foundation in cloud-native technologies and DevOps engineering. He has contributed extensively to open-source projects, notably with [OpenMRS](https://talk.openmrs.org/u/aahil/summary), where he honed his skills in crafting comprehensive technical documentation and API guides.
+Aahil's passion for technology and education is evident in his mentorship roles within the [Technical Writers Mentorship Program](https://technicalwritingmp.com/) open-source community, where he has guided numerous aspiring writers. His freelance work with various companies has further solidified his expertise in simplifying complex technical concepts, making technology more accessible to a broader audience.
+A graduate of [AltSchool Africa](https://altschoolafrica.com/) with a diploma in cloud engineering, Aahil brings a unique blend of practical experience and academic knowledge to his role at Pi Squared. His commitment to collaboration and innovation aligns with Pi Squared's mission to advance the frontiers of Web3 development.
+
+
+---
+
+## Yuqing Zhai
+
+**Title:** Software Intern
+
+**Bio:**
+**Yuqing Zhai** is a Software Intern at Pi Squared Inc. Yuqing is currently pursuing a degree in Computer Science at the University of Illinois at Urbana-Champaign, with a focus on programming language design and compiler construction. They are passionate about designing novel and beautiful programming languages, driven by the intersection of creativity and technical rigor. At Pi Squared Inc., Yuqing works on defining languages like Move, EVM, and Solidity in K. They find the opportunity to learn and apply K in a practical context, such as blockchain, to be intellectually stimulating and rewarding. Outside of work, Yuqing enjoys playing danmuku games and collecting doujin electronic music records.
+
+---
+
+## Matthieu Betton
+
+**Title:** Head of Commercial Operations / Business Development
+
+**Bio:**
+**Matthieu Betton** is an experienced commercial leader with over a decade of success driving revenue growth and business development across Web3, GameFi, SaaS, and AdTech. Prior to joining Pi Squared, he led EMEA business development at Immutable, forging high-impact deals that brought millions of users onto the Immutable blockchain ecosystem. Previously, he drove global revenue expansion for multiple start-ups and scale-ups, growing their revenues from zero to tens of millions, culminating in one venture’s successful IPO. Matthieu has worked with major brands such as Disney, Marriott, Google, and Meta. He holds a Master’s in Business Administration from Heriot-Watt University and a Master of Science in Economics from EM Strasbourg Business School.
+
+---
+
+## Raduletu Petre-Horia
+
+**Title:** Software Intern
+
+**Bio:**
+**Raduletu Petre-Horia** is a software intern at Pisquared. He is currently enrolled in the Security and applied logic MSc program at the University of Bucharest. Prior, he earned a Computer Science BSc at the West University of  Timisoara. He is working with the Zero Knowledge Proof team, where he finds their research topics to be interesting and aligned with his passion for cryptography and privacy-preserving technologies. In his free time, he enjoys exploring advanced concepts from various topics, and research the pedagogical aspects of them.
+
+---
+
+## Sean Koo
+
+**Title:** Associate Project Manager
+
+**Bio:**
+**Sean Koo** is an Associate Project Manager at Pi Squared. He earned his Master’s degree in Computer Science from the University of Illinois Urbana-Champaign, where he also studied Statistics and Computer Science as an undergraduate. At Pi Squared Inc, Sean focuses on project management, driving both success and innovation. Outside of work, he enjoys organizing Esports related events.
+
+
+---
+
+## Yan Liu
+
+**Title:** Software Engineer
+
+**Bio:**
+**Yan** received her PhD from National University of Singapore and worked in ADSC, Singapore/UIUC as a postdoc. She is interested in formal methods and programming languages. She worked as an IC on the Confidential Computing and Query Optimisation in Ant Group, Hangzhou. Prior to joining Pi Squared Inc., she was developing Rust Verification tool, [KMIR](https://github.com/runtimeverification/mir-semantics) and auditing Rust smart contracts in Runtime Verification Inc.
+
+---
+
+## Nishant Rodrigues
+
+**Title:** Software Engineer
+
+**Bio:**
+**Nishant Rodrigues** is a software engineer at Pi Squared Inc. His Ph.D. thesis, from the
+University of Illinois, focused on the semantics-first approach for programming
+language development and proof generation. A driving motivation for these
+interests is making formal verification a more accessible as a tool in test- and
+specification-driven development.
 
 ---
 

@@ -111,6 +111,10 @@ We present matching logic as a unifying foundation for programming, where progra
 **Abstract:**
 A self-contained introduction to designing efficient Rank-1-Constraint-Systems via solutions to some essential subroutines. Includes motivation for working at this level in the Pi Squared checker.
 
+**Speakers:**
+
+- Mihai Calancea (ZK Proof Team Lead)
+
 #### ZK Proof of Math Proof for Universal Verifiable Computing
 
 **Type:** talk
@@ -128,6 +132,10 @@ Grigore Rosu, the Founder & CEO of Pi Squared, explains Pi squared universal ver
 
 **Abstract:**
 We cover differences between ZK proofs and Math proofs, and what we understand by a Math Proof of a program execution. Then we briefly discuss our proof generating algorithm that can produce proofs for concrete executions. At the end, we show a short demo of what our generator is capable of.
+
+**Speakers:**
+
+- Adam Fiedler (Lead Software Engineer)
 
 ---
 
