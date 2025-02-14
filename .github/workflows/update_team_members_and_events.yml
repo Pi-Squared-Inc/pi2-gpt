@@ -1,8 +1,6 @@
 name: Update Team Members and Events
 
-on:
-  schedule:
-    - cron: "0 0 * * *"
+on: workflow_dispatch
 
 jobs:
   update-team-members-and-events:
