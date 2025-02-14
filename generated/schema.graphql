@@ -1,0 +1,1477 @@
+"""
+Indicates exactly one field must be supplied and this field must not be `null`.
+"""
+directive @oneOf on INPUT_OBJECT
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+"""
+A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar DateTime
+
+"""
+A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar Date
+
+type Pagination {
+  total: Int!
+  page: Int!
+  pageSize: Int!
+  pageCount: Int!
+}
+
+type ResponseCollectionMeta {
+  pagination: Pagination!
+}
+
+type DeleteMutationResponse {
+  documentId: ID!
+}
+
+enum PublicationStatus {
+  DRAFT
+  PUBLISHED
+}
+
+input IDFilterInput {
+  and: [ID]
+  or: [ID]
+  not: IDFilterInput
+  eq: ID
+  eqi: ID
+  ne: ID
+  nei: ID
+  startsWith: ID
+  endsWith: ID
+  contains: ID
+  notContains: ID
+  containsi: ID
+  notContainsi: ID
+  gt: ID
+  gte: ID
+  lt: ID
+  lte: ID
+  null: Boolean
+  notNull: Boolean
+  in: [ID]
+  notIn: [ID]
+  between: [ID]
+}
+
+input BooleanFilterInput {
+  and: [Boolean]
+  or: [Boolean]
+  not: BooleanFilterInput
+  eq: Boolean
+  eqi: Boolean
+  ne: Boolean
+  nei: Boolean
+  startsWith: Boolean
+  endsWith: Boolean
+  contains: Boolean
+  notContains: Boolean
+  containsi: Boolean
+  notContainsi: Boolean
+  gt: Boolean
+  gte: Boolean
+  lt: Boolean
+  lte: Boolean
+  null: Boolean
+  notNull: Boolean
+  in: [Boolean]
+  notIn: [Boolean]
+  between: [Boolean]
+}
+
+input StringFilterInput {
+  and: [String]
+  or: [String]
+  not: StringFilterInput
+  eq: String
+  eqi: String
+  ne: String
+  nei: String
+  startsWith: String
+  endsWith: String
+  contains: String
+  notContains: String
+  containsi: String
+  notContainsi: String
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  null: Boolean
+  notNull: Boolean
+  in: [String]
+  notIn: [String]
+  between: [String]
+}
+
+input IntFilterInput {
+  and: [Int]
+  or: [Int]
+  not: IntFilterInput
+  eq: Int
+  eqi: Int
+  ne: Int
+  nei: Int
+  startsWith: Int
+  endsWith: Int
+  contains: Int
+  notContains: Int
+  containsi: Int
+  notContainsi: Int
+  gt: Int
+  gte: Int
+  lt: Int
+  lte: Int
+  null: Boolean
+  notNull: Boolean
+  in: [Int]
+  notIn: [Int]
+  between: [Int]
+}
+
+input FloatFilterInput {
+  and: [Float]
+  or: [Float]
+  not: FloatFilterInput
+  eq: Float
+  eqi: Float
+  ne: Float
+  nei: Float
+  startsWith: Float
+  endsWith: Float
+  contains: Float
+  notContains: Float
+  containsi: Float
+  notContainsi: Float
+  gt: Float
+  gte: Float
+  lt: Float
+  lte: Float
+  null: Boolean
+  notNull: Boolean
+  in: [Float]
+  notIn: [Float]
+  between: [Float]
+}
+
+input DateFilterInput {
+  and: [Date]
+  or: [Date]
+  not: DateFilterInput
+  eq: Date
+  eqi: Date
+  ne: Date
+  nei: Date
+  startsWith: Date
+  endsWith: Date
+  contains: Date
+  notContains: Date
+  containsi: Date
+  notContainsi: Date
+  gt: Date
+  gte: Date
+  lt: Date
+  lte: Date
+  null: Boolean
+  notNull: Boolean
+  in: [Date]
+  notIn: [Date]
+  between: [Date]
+}
+
+input DateTimeFilterInput {
+  and: [DateTime]
+  or: [DateTime]
+  not: DateTimeFilterInput
+  eq: DateTime
+  eqi: DateTime
+  ne: DateTime
+  nei: DateTime
+  startsWith: DateTime
+  endsWith: DateTime
+  contains: DateTime
+  notContains: DateTime
+  containsi: DateTime
+  notContainsi: DateTime
+  gt: DateTime
+  gte: DateTime
+  lt: DateTime
+  lte: DateTime
+  null: Boolean
+  notNull: Boolean
+  in: [DateTime]
+  notIn: [DateTime]
+  between: [DateTime]
+}
+
+input JSONFilterInput {
+  and: [JSON]
+  or: [JSON]
+  not: JSONFilterInput
+  eq: JSON
+  eqi: JSON
+  ne: JSON
+  nei: JSON
+  startsWith: JSON
+  endsWith: JSON
+  contains: JSON
+  notContains: JSON
+  containsi: JSON
+  notContainsi: JSON
+  gt: JSON
+  gte: JSON
+  lt: JSON
+  lte: JSON
+  null: Boolean
+  notNull: Boolean
+  in: [JSON]
+  notIn: [JSON]
+  between: [JSON]
+}
+
+input ComponentBasicVideoFiltersInput {
+  name: StringFilterInput
+  url: StringFilterInput
+  and: [ComponentBasicVideoFiltersInput]
+  or: [ComponentBasicVideoFiltersInput]
+  not: ComponentBasicVideoFiltersInput
+}
+
+input ComponentBasicVideoInput {
+  id: ID
+  name: String
+  url: String
+}
+
+type ComponentBasicVideo {
+  id: ID!
+  attributes: ComponentBasicVideo! @deprecated(reason: "Use root level fields instead")
+  data: ComponentBasicVideo! @deprecated(reason: "Use root level fields instead")
+  name: String
+  url: String
+}
+
+type ComponentBasicStringArray {
+  id: ID!
+  attributes: ComponentBasicStringArray! @deprecated(reason: "Use root level fields instead")
+  data: ComponentBasicStringArray! @deprecated(reason: "Use root level fields instead")
+  url: String!
+  name: String!
+}
+
+input ComponentBasicFileFiltersInput {
+  name: StringFilterInput
+  url: StringFilterInput
+  and: [ComponentBasicFileFiltersInput]
+  or: [ComponentBasicFileFiltersInput]
+  not: ComponentBasicFileFiltersInput
+}
+
+input ComponentBasicFileInput {
+  id: ID
+  name: String
+  url: String
+  file: ID
+}
+
+type ComponentBasicFile {
+  id: ID!
+  attributes: ComponentBasicFile! @deprecated(reason: "Use root level fields instead")
+  data: ComponentBasicFile! @deprecated(reason: "Use root level fields instead")
+  name: String
+  url: String
+  file: UploadFile
+}
+
+type ComponentBasicEventSlide {
+  id: ID!
+  attributes: ComponentBasicEventSlide! @deprecated(reason: "Use root level fields instead")
+  data: ComponentBasicEventSlide! @deprecated(reason: "Use root level fields instead")
+  name: String!
+  file: UploadFile!
+}
+
+input ComponentBasicEventAttendanceFiltersInput {
+  title: StringFilterInput
+  team_member: TeamMemberFiltersInput
+  and: [ComponentBasicEventAttendanceFiltersInput]
+  or: [ComponentBasicEventAttendanceFiltersInput]
+  not: ComponentBasicEventAttendanceFiltersInput
+}
+
+input ComponentBasicEventAttendanceInput {
+  id: ID
+  title: String
+  team_member: ID
+}
+
+type ComponentBasicEventAttendance {
+  id: ID!
+  attributes: ComponentBasicEventAttendance! @deprecated(reason: "Use root level fields instead")
+  data: ComponentBasicEventAttendance! @deprecated(reason: "Use root level fields instead")
+  title: String
+  team_member: TeamMember
+}
+
+input UploadFileFiltersInput {
+  documentId: IDFilterInput
+  name: StringFilterInput
+  alternativeText: StringFilterInput
+  caption: StringFilterInput
+  width: IntFilterInput
+  height: IntFilterInput
+  formats: JSONFilterInput
+  hash: StringFilterInput
+  ext: StringFilterInput
+  mime: StringFilterInput
+  size: FloatFilterInput
+  url: StringFilterInput
+  previewUrl: StringFilterInput
+  provider: StringFilterInput
+  provider_metadata: JSONFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [UploadFileFiltersInput]
+  or: [UploadFileFiltersInput]
+  not: UploadFileFiltersInput
+}
+
+type UploadFile {
+  id: ID! @deprecated(reason: "Use `documentId` instead")
+  documentId: ID!
+  attributes: UploadFile! @deprecated(reason: "Use root level fields instead")
+  data: UploadFile! @deprecated(reason: "Use root level fields instead")
+  name: String!
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: JSON
+  hash: String!
+  ext: String
+  mime: String!
+  size: Float!
+  url: String!
+  previewUrl: String
+  provider: String!
+  provider_metadata: JSON
+  related: [GenericMorph]
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type UploadFileEntityResponseCollection {
+  nodes: [UploadFile!]!
+  pageInfo: Pagination!
+  data: [UploadFile!]! @deprecated(reason: "Use `nodes` field instead")
+  meta: ResponseCollectionMeta! @deprecated(reason: "Use the `pageInfo` field instead")
+}
+
+input I18NLocaleFiltersInput {
+  documentId: IDFilterInput
+  name: StringFilterInput
+  code: StringFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [I18NLocaleFiltersInput]
+  or: [I18NLocaleFiltersInput]
+  not: I18NLocaleFiltersInput
+}
+
+type I18NLocale {
+  id: ID! @deprecated(reason: "Use `documentId` instead")
+  documentId: ID!
+  attributes: I18NLocale! @deprecated(reason: "Use root level fields instead")
+  data: I18NLocale! @deprecated(reason: "Use root level fields instead")
+  name: String
+  code: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type I18NLocaleEntityResponseCollection {
+  nodes: [I18NLocale!]!
+  pageInfo: Pagination!
+  data: [I18NLocale!]! @deprecated(reason: "Use `nodes` field instead")
+  meta: ResponseCollectionMeta! @deprecated(reason: "Use the `pageInfo` field instead")
+}
+
+input ReviewWorkflowsWorkflowFiltersInput {
+  documentId: IDFilterInput
+  name: StringFilterInput
+  stages: ReviewWorkflowsWorkflowStageFiltersInput
+  stageRequiredToPublish: ReviewWorkflowsWorkflowStageFiltersInput
+  contentTypes: JSONFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [ReviewWorkflowsWorkflowFiltersInput]
+  or: [ReviewWorkflowsWorkflowFiltersInput]
+  not: ReviewWorkflowsWorkflowFiltersInput
+}
+
+input ReviewWorkflowsWorkflowInput {
+  name: String
+  stages: [ID]
+  stageRequiredToPublish: ID
+  contentTypes: JSON
+  publishedAt: DateTime
+}
+
+type ReviewWorkflowsWorkflow {
+  id: ID! @deprecated(reason: "Use `documentId` instead")
+  documentId: ID!
+  attributes: ReviewWorkflowsWorkflow! @deprecated(reason: "Use root level fields instead")
+  data: ReviewWorkflowsWorkflow! @deprecated(reason: "Use root level fields instead")
+  name: String!
+  stages_connection(filters: ReviewWorkflowsWorkflowStageFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): ReviewWorkflowsWorkflowStageRelationResponseCollection
+  stages(filters: ReviewWorkflowsWorkflowStageFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ReviewWorkflowsWorkflowStage]!
+  stageRequiredToPublish: ReviewWorkflowsWorkflowStage
+  contentTypes: JSON!
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type ReviewWorkflowsWorkflowEntityResponseCollection {
+  nodes: [ReviewWorkflowsWorkflow!]!
+  pageInfo: Pagination!
+  data: [ReviewWorkflowsWorkflow!]! @deprecated(reason: "Use `nodes` field instead")
+  meta: ResponseCollectionMeta! @deprecated(reason: "Use the `pageInfo` field instead")
+}
+
+input ReviewWorkflowsWorkflowStageFiltersInput {
+  documentId: IDFilterInput
+  name: StringFilterInput
+  color: StringFilterInput
+  workflow: ReviewWorkflowsWorkflowFiltersInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [ReviewWorkflowsWorkflowStageFiltersInput]
+  or: [ReviewWorkflowsWorkflowStageFiltersInput]
+  not: ReviewWorkflowsWorkflowStageFiltersInput
+}
+
+input ReviewWorkflowsWorkflowStageInput {
+  name: String
+  color: String
+  workflow: ID
+  publishedAt: DateTime
+}
+
+type ReviewWorkflowsWorkflowStage {
+  id: ID! @deprecated(reason: "Use `documentId` instead")
+  documentId: ID!
+  attributes: ReviewWorkflowsWorkflowStage! @deprecated(reason: "Use root level fields instead")
+  data: ReviewWorkflowsWorkflowStage! @deprecated(reason: "Use root level fields instead")
+  name: String
+  color: String
+  workflow: ReviewWorkflowsWorkflow
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type ReviewWorkflowsWorkflowStageEntityResponseCollection {
+  nodes: [ReviewWorkflowsWorkflowStage!]!
+  pageInfo: Pagination!
+  data: [ReviewWorkflowsWorkflowStage!]! @deprecated(reason: "Use `nodes` field instead")
+  meta: ResponseCollectionMeta! @deprecated(reason: "Use the `pageInfo` field instead")
+}
+
+type ReviewWorkflowsWorkflowStageRelationResponseCollection {
+  nodes: [ReviewWorkflowsWorkflowStage!]!
+  data: [ReviewWorkflowsWorkflowStage!]! @deprecated(reason: "Use `nodes` field instead")
+}
+
+input UsersPermissionsPermissionFiltersInput {
+  documentId: IDFilterInput
+  action: StringFilterInput
+  role: UsersPermissionsRoleFiltersInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [UsersPermissionsPermissionFiltersInput]
+  or: [UsersPermissionsPermissionFiltersInput]
+  not: UsersPermissionsPermissionFiltersInput
+}
+
+type UsersPermissionsPermission {
+  id: ID! @deprecated(reason: "Use `documentId` instead")
+  documentId: ID!
+  attributes: UsersPermissionsPermission! @deprecated(reason: "Use root level fields instead")
+  data: UsersPermissionsPermission! @deprecated(reason: "Use root level fields instead")
+  action: String!
+  role: UsersPermissionsRole
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type UsersPermissionsPermissionRelationResponseCollection {
+  nodes: [UsersPermissionsPermission!]!
+  data: [UsersPermissionsPermission!]! @deprecated(reason: "Use `nodes` field instead")
+}
+
+input UsersPermissionsRoleFiltersInput {
+  documentId: IDFilterInput
+  name: StringFilterInput
+  description: StringFilterInput
+  type: StringFilterInput
+  permissions: UsersPermissionsPermissionFiltersInput
+  users: UsersPermissionsUserFiltersInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [UsersPermissionsRoleFiltersInput]
+  or: [UsersPermissionsRoleFiltersInput]
+  not: UsersPermissionsRoleFiltersInput
+}
+
+input UsersPermissionsRoleInput {
+  name: String
+  description: String
+  type: String
+  permissions: [ID]
+  users: [ID]
+  publishedAt: DateTime
+}
+
+type UsersPermissionsRole {
+  id: ID! @deprecated(reason: "Use `documentId` instead")
+  documentId: ID!
+  attributes: UsersPermissionsRole! @deprecated(reason: "Use root level fields instead")
+  data: UsersPermissionsRole! @deprecated(reason: "Use root level fields instead")
+  name: String!
+  description: String
+  type: String
+  permissions_connection(filters: UsersPermissionsPermissionFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UsersPermissionsPermissionRelationResponseCollection
+  permissions(filters: UsersPermissionsPermissionFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [UsersPermissionsPermission]!
+  users_connection(filters: UsersPermissionsUserFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UsersPermissionsUserRelationResponseCollection
+  users(filters: UsersPermissionsUserFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [UsersPermissionsUser]!
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type UsersPermissionsRoleEntityResponseCollection {
+  nodes: [UsersPermissionsRole!]!
+  pageInfo: Pagination!
+  data: [UsersPermissionsRole!]! @deprecated(reason: "Use `nodes` field instead")
+  meta: ResponseCollectionMeta! @deprecated(reason: "Use the `pageInfo` field instead")
+}
+
+input UsersPermissionsUserFiltersInput {
+  documentId: IDFilterInput
+  username: StringFilterInput
+  email: StringFilterInput
+  provider: StringFilterInput
+  confirmed: BooleanFilterInput
+  blocked: BooleanFilterInput
+  role: UsersPermissionsRoleFiltersInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [UsersPermissionsUserFiltersInput]
+  or: [UsersPermissionsUserFiltersInput]
+  not: UsersPermissionsUserFiltersInput
+}
+
+input UsersPermissionsUserInput {
+  username: String
+  email: String
+  provider: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: ID
+  publishedAt: DateTime
+  password: String
+}
+
+type UsersPermissionsUser {
+  id: ID! @deprecated(reason: "Use `documentId` instead")
+  documentId: ID!
+  attributes: UsersPermissionsUser! @deprecated(reason: "Use root level fields instead")
+  data: UsersPermissionsUser! @deprecated(reason: "Use root level fields instead")
+  username: String!
+  email: String!
+  provider: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsRole
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type UsersPermissionsUserEntityResponse {
+  data: UsersPermissionsUser
+}
+
+type UsersPermissionsUserEntityResponseCollection {
+  nodes: [UsersPermissionsUser!]!
+  pageInfo: Pagination!
+  data: [UsersPermissionsUser!]! @deprecated(reason: "Use `nodes` field instead")
+  meta: ResponseCollectionMeta! @deprecated(reason: "Use the `pageInfo` field instead")
+}
+
+type UsersPermissionsUserRelationResponseCollection {
+  nodes: [UsersPermissionsUser!]!
+  data: [UsersPermissionsUser!]! @deprecated(reason: "Use `nodes` field instead")
+}
+
+input ArticleFiltersInput {
+  documentId: IDFilterInput
+  description: StringFilterInput
+  tag: StringFilterInput
+  url: StringFilterInput
+  groupId: StringFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [ArticleFiltersInput]
+  or: [ArticleFiltersInput]
+  not: ArticleFiltersInput
+}
+
+input ArticleInput {
+  description: String
+  tag: String
+  url: String
+  image: ID
+  groupId: String
+  publishedAt: DateTime
+}
+
+type Article {
+  id: ID! @deprecated(reason: "Use `documentId` instead")
+  documentId: ID!
+  attributes: Article! @deprecated(reason: "Use root level fields instead")
+  data: Article! @deprecated(reason: "Use root level fields instead")
+  description: String
+  tag: String
+  url: String
+  image: UploadFile
+  groupId: String!
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type ArticleEntityResponseCollection {
+  nodes: [Article!]!
+  pageInfo: Pagination!
+  data: [Article!]! @deprecated(reason: "Use `nodes` field instead")
+  meta: ResponseCollectionMeta! @deprecated(reason: "Use the `pageInfo` field instead")
+}
+
+input BannerInput {
+  content: String
+  publishedAt: DateTime
+}
+
+type Banner {
+  id: ID! @deprecated(reason: "Use `documentId` instead")
+  documentId: ID!
+  attributes: Banner! @deprecated(reason: "Use root level fields instead")
+  data: Banner! @deprecated(reason: "Use root level fields instead")
+  content: String!
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+input DeveloperEmailFiltersInput {
+  documentId: IDFilterInput
+  DeveloperEmail: StringFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [DeveloperEmailFiltersInput]
+  or: [DeveloperEmailFiltersInput]
+  not: DeveloperEmailFiltersInput
+}
+
+input DeveloperEmailInput {
+  DeveloperEmail: String
+  publishedAt: DateTime
+}
+
+type DeveloperEmail {
+  id: ID! @deprecated(reason: "Use `documentId` instead")
+  documentId: ID!
+  attributes: DeveloperEmail! @deprecated(reason: "Use root level fields instead")
+  data: DeveloperEmail! @deprecated(reason: "Use root level fields instead")
+  DeveloperEmail: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type DeveloperEmailEntityResponseCollection {
+  nodes: [DeveloperEmail!]!
+  pageInfo: Pagination!
+  data: [DeveloperEmail!]! @deprecated(reason: "Use `nodes` field instead")
+  meta: ResponseCollectionMeta! @deprecated(reason: "Use the `pageInfo` field instead")
+}
+
+input EmailTemplateFiltersInput {
+  documentId: IDFilterInput
+  Subject: StringFilterInput
+  Content: StringFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [EmailTemplateFiltersInput]
+  or: [EmailTemplateFiltersInput]
+  not: EmailTemplateFiltersInput
+}
+
+input EmailTemplateInput {
+  Subject: String
+  Content: String
+  publishedAt: DateTime
+}
+
+type EmailTemplate {
+  id: ID! @deprecated(reason: "Use `documentId` instead")
+  documentId: ID!
+  attributes: EmailTemplate! @deprecated(reason: "Use root level fields instead")
+  data: EmailTemplate! @deprecated(reason: "Use root level fields instead")
+  Subject: String
+  Content: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type EmailTemplateEntityResponseCollection {
+  nodes: [EmailTemplate!]!
+  pageInfo: Pagination!
+  data: [EmailTemplate!]! @deprecated(reason: "Use `nodes` field instead")
+  meta: ResponseCollectionMeta! @deprecated(reason: "Use the `pageInfo` field instead")
+}
+
+input EventFiltersInput {
+  documentId: IDFilterInput
+  start_date: DateTimeFilterInput
+  end_date: DateTimeFilterInput
+  completed: BooleanFilterInput
+  name: StringFilterInput
+  url: StringFilterInput
+  location: StringFilterInput
+  activities: EventActivityFiltersInput
+  attendees: ComponentBasicEventAttendanceFiltersInput
+  event_id: StringFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [EventFiltersInput]
+  or: [EventFiltersInput]
+  not: EventFiltersInput
+}
+
+input EventInput {
+  image: ID
+  start_date: DateTime
+  end_date: DateTime
+  completed: Boolean
+  name: String
+  url: String
+  location: String
+  activities: [ID]
+  attendees: [ComponentBasicEventAttendanceInput]
+  event_id: String
+  publishedAt: DateTime
+}
+
+type Event {
+  id: ID! @deprecated(reason: "Use `documentId` instead")
+  documentId: ID!
+  attributes: Event! @deprecated(reason: "Use root level fields instead")
+  data: Event! @deprecated(reason: "Use root level fields instead")
+  image: UploadFile!
+  start_date: DateTime
+  end_date: DateTime
+  completed: Boolean!
+  name: String!
+  url: String!
+  location: String
+  activities_connection(filters: EventActivityFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): EventActivityRelationResponseCollection
+  activities(filters: EventActivityFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [EventActivity]!
+  attendees(filters: ComponentBasicEventAttendanceFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBasicEventAttendance]
+  event_id: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type EventEntityResponseCollection {
+  nodes: [Event!]!
+  pageInfo: Pagination!
+  data: [Event!]! @deprecated(reason: "Use `nodes` field instead")
+  meta: ResponseCollectionMeta! @deprecated(reason: "Use the `pageInfo` field instead")
+}
+
+enum ENUM_EVENTACTIVITY_TYPE {
+  talk
+  workshop
+  panel
+}
+
+input EventActivityFiltersInput {
+  documentId: IDFilterInput
+  title: StringFilterInput
+  start_date: DateTimeFilterInput
+  end_date: DateTimeFilterInput
+  type: StringFilterInput
+  abstract: StringFilterInput
+  recordings: ComponentBasicVideoFiltersInput
+  slides: ComponentBasicFileFiltersInput
+  materials: StringFilterInput
+  speakers: TeamMemberFiltersInput
+  event: EventFiltersInput
+  location: StringFilterInput
+  event_activity_url: StringFilterInput
+  presentationtitle: StringFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [EventActivityFiltersInput]
+  or: [EventActivityFiltersInput]
+  not: EventActivityFiltersInput
+}
+
+input EventActivityInput {
+  title: String
+  start_date: DateTime
+  end_date: DateTime
+  type: ENUM_EVENTACTIVITY_TYPE
+  abstract: String
+  recordings: [ComponentBasicVideoInput]
+  slides: [ComponentBasicFileInput]
+  materials: String
+  speakers: [ID]
+  event: ID
+  location: String
+  event_activity_url: String
+  presentationtitle: String
+  publishedAt: DateTime
+}
+
+type EventActivity {
+  id: ID! @deprecated(reason: "Use `documentId` instead")
+  documentId: ID!
+  attributes: EventActivity! @deprecated(reason: "Use root level fields instead")
+  data: EventActivity! @deprecated(reason: "Use root level fields instead")
+  title: String
+  start_date: DateTime
+  end_date: DateTime
+  type: ENUM_EVENTACTIVITY_TYPE!
+  abstract: String
+  recordings(filters: ComponentBasicVideoFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBasicVideo]
+  slides(filters: ComponentBasicFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBasicFile]
+  materials: String
+  speakers_connection(filters: TeamMemberFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): TeamMemberRelationResponseCollection
+  speakers(filters: TeamMemberFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [TeamMember]!
+  event: Event
+  location: String
+  event_activity_url: String
+  presentationtitle: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type EventActivityEntityResponseCollection {
+  nodes: [EventActivity!]!
+  pageInfo: Pagination!
+  data: [EventActivity!]! @deprecated(reason: "Use `nodes` field instead")
+  meta: ResponseCollectionMeta! @deprecated(reason: "Use the `pageInfo` field instead")
+}
+
+type EventActivityRelationResponseCollection {
+  nodes: [EventActivity!]!
+  data: [EventActivity!]! @deprecated(reason: "Use `nodes` field instead")
+}
+
+input JobFiltersInput {
+  documentId: IDFilterInput
+  title: StringFilterInput
+  responsibilities: StringFilterInput
+  requirements: StringFilterInput
+  jobId: StringFilterInput
+  brief: StringFilterInput
+  location: StringFilterInput
+  companyOverview: StringFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [JobFiltersInput]
+  or: [JobFiltersInput]
+  not: JobFiltersInput
+}
+
+input JobInput {
+  title: String
+  responsibilities: String
+  requirements: String
+  jobId: String
+  brief: String
+  location: String
+  companyOverview: String
+  publishedAt: DateTime
+}
+
+type Job {
+  id: ID! @deprecated(reason: "Use `documentId` instead")
+  documentId: ID!
+  attributes: Job! @deprecated(reason: "Use root level fields instead")
+  data: Job! @deprecated(reason: "Use root level fields instead")
+  title: String!
+  responsibilities: String
+  requirements: String
+  jobId: String
+  brief: String
+  location: String
+  companyOverview: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type JobEntityResponseCollection {
+  nodes: [Job!]!
+  pageInfo: Pagination!
+  data: [Job!]! @deprecated(reason: "Use `nodes` field instead")
+  meta: ResponseCollectionMeta! @deprecated(reason: "Use the `pageInfo` field instead")
+}
+
+input PaperFiltersInput {
+  documentId: IDFilterInput
+  title: StringFilterInput
+  abstract: StringFilterInput
+  source: StringFilterInput
+  pi2_authors: TeamMemberFiltersInput
+  summary: StringFilterInput
+  authors: JSONFilterInput
+  slug: StringFilterInput
+  issueDate: DateFilterInput
+  sourceLink: StringFilterInput
+  attachmentLink: StringFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [PaperFiltersInput]
+  or: [PaperFiltersInput]
+  not: PaperFiltersInput
+}
+
+input PaperInput {
+  title: String
+  abstract: String
+  source: String
+  pi2_authors: [ID]
+  summary: String
+  attachment: ID
+  authors: JSON
+  slug: String
+  cover: ID
+  issueDate: Date
+  thumbnail: ID
+  sourceLink: String
+  attachmentLink: String
+  publishedAt: DateTime
+}
+
+type Paper {
+  id: ID! @deprecated(reason: "Use `documentId` instead")
+  documentId: ID!
+  attributes: Paper! @deprecated(reason: "Use root level fields instead")
+  data: Paper! @deprecated(reason: "Use root level fields instead")
+  title: String!
+  abstract: String!
+  source: String
+  pi2_authors_connection(filters: TeamMemberFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): TeamMemberRelationResponseCollection
+  pi2_authors(filters: TeamMemberFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [TeamMember]!
+  summary: String
+  attachment: UploadFile!
+  authors: JSON
+  slug: String!
+  cover: UploadFile
+  issueDate: Date!
+  thumbnail: UploadFile
+  sourceLink: String
+  attachmentLink: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type PaperEntityResponseCollection {
+  nodes: [Paper!]!
+  pageInfo: Pagination!
+  data: [Paper!]! @deprecated(reason: "Use `nodes` field instead")
+  meta: ResponseCollectionMeta! @deprecated(reason: "Use the `pageInfo` field instead")
+}
+
+type PaperRelationResponseCollection {
+  nodes: [Paper!]!
+  data: [Paper!]! @deprecated(reason: "Use `nodes` field instead")
+}
+
+enum ENUM_PAPERGROUP_LAYOUT {
+  grid
+  featured
+}
+
+input PaperGroupFiltersInput {
+  documentId: IDFilterInput
+  title: StringFilterInput
+  order: IntFilterInput
+  papers: PaperFiltersInput
+  layout: StringFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [PaperGroupFiltersInput]
+  or: [PaperGroupFiltersInput]
+  not: PaperGroupFiltersInput
+}
+
+input PaperGroupInput {
+  title: String
+  order: Int
+  papers: [ID]
+  layout: ENUM_PAPERGROUP_LAYOUT
+  publishedAt: DateTime
+}
+
+type PaperGroup {
+  id: ID! @deprecated(reason: "Use `documentId` instead")
+  documentId: ID!
+  attributes: PaperGroup! @deprecated(reason: "Use root level fields instead")
+  data: PaperGroup! @deprecated(reason: "Use root level fields instead")
+  title: String!
+  order: Int
+  papers_connection(filters: PaperFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): PaperRelationResponseCollection
+  papers(filters: PaperFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [Paper]!
+  layout: ENUM_PAPERGROUP_LAYOUT
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type PaperGroupEntityResponseCollection {
+  nodes: [PaperGroup!]!
+  pageInfo: Pagination!
+  data: [PaperGroup!]! @deprecated(reason: "Use `nodes` field instead")
+  meta: ResponseCollectionMeta! @deprecated(reason: "Use the `pageInfo` field instead")
+}
+
+enum ENUM_TEAMMEMBER_CATEGORY {
+  Team
+  Advisors
+  Angels
+}
+
+input TeamMemberFiltersInput {
+  documentId: IDFilterInput
+  name: StringFilterInput
+  title: StringFilterInput
+  twitter: StringFilterInput
+  github: StringFilterInput
+  linkedin: StringFilterInput
+  website: StringFilterInput
+  dblp: StringFilterInput
+  index: FloatFilterInput
+  bio: StringFilterInput
+  event_activities: EventActivityFiltersInput
+  category: StringFilterInput
+  englishName: StringFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [TeamMemberFiltersInput]
+  or: [TeamMemberFiltersInput]
+  not: TeamMemberFiltersInput
+}
+
+input TeamMemberInput {
+  name: String
+  title: String
+  twitter: String
+  github: String
+  linkedin: String
+  website: String
+  dblp: String
+  photo: ID
+  index: Float
+  bio: String
+  event_activities: [ID]
+  category: ENUM_TEAMMEMBER_CATEGORY
+  englishName: String
+  publishedAt: DateTime
+}
+
+type TeamMember {
+  id: ID! @deprecated(reason: "Use `documentId` instead")
+  documentId: ID!
+  attributes: TeamMember! @deprecated(reason: "Use root level fields instead")
+  data: TeamMember! @deprecated(reason: "Use root level fields instead")
+  name: String!
+  title: String!
+  twitter: String
+  github: String
+  linkedin: String
+  website: String
+  dblp: String
+  photo: UploadFile!
+  index: Float
+  bio: String!
+  event_activities_connection(filters: EventActivityFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): EventActivityRelationResponseCollection
+  event_activities(filters: EventActivityFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [EventActivity]!
+  category: ENUM_TEAMMEMBER_CATEGORY
+  englishName: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type TeamMemberEntityResponseCollection {
+  nodes: [TeamMember!]!
+  pageInfo: Pagination!
+  data: [TeamMember!]! @deprecated(reason: "Use `nodes` field instead")
+  meta: ResponseCollectionMeta! @deprecated(reason: "Use the `pageInfo` field instead")
+}
+
+type TeamMemberRelationResponseCollection {
+  nodes: [TeamMember!]!
+  data: [TeamMember!]! @deprecated(reason: "Use `nodes` field instead")
+}
+
+input VideoGroupFiltersInput {
+  documentId: IDFilterInput
+  title: StringFilterInput
+  order: IntFilterInput
+  videos: VideoPageFiltersInput
+  name: StringFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [VideoGroupFiltersInput]
+  or: [VideoGroupFiltersInput]
+  not: VideoGroupFiltersInput
+}
+
+input VideoGroupInput {
+  title: String
+  order: Int
+  videos: [ID]
+  name: String
+  publishedAt: DateTime
+}
+
+type VideoGroup {
+  id: ID! @deprecated(reason: "Use `documentId` instead")
+  documentId: ID!
+  attributes: VideoGroup! @deprecated(reason: "Use root level fields instead")
+  data: VideoGroup! @deprecated(reason: "Use root level fields instead")
+  title: String!
+  order: Int!
+  videos_connection(filters: VideoPageFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): VideoPageRelationResponseCollection
+  videos(filters: VideoPageFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [VideoPage]!
+  name: String!
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type VideoGroupEntityResponseCollection {
+  nodes: [VideoGroup!]!
+  pageInfo: Pagination!
+  data: [VideoGroup!]! @deprecated(reason: "Use `nodes` field instead")
+  meta: ResponseCollectionMeta! @deprecated(reason: "Use the `pageInfo` field instead")
+}
+
+input VideoPageFiltersInput {
+  documentId: IDFilterInput
+  slug: StringFilterInput
+  title: StringFilterInput
+  subtitle: StringFilterInput
+  summaryTitle: StringFilterInput
+  paragraphTitle: StringFilterInput
+  explainatoryParagraph: StringFilterInput
+  videoTitle: StringFilterInput
+  videoLink: StringFilterInput
+  eventLocation: StringFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [VideoPageFiltersInput]
+  or: [VideoPageFiltersInput]
+  not: VideoPageFiltersInput
+}
+
+input VideoPageInput {
+  slug: String
+  title: String
+  subtitle: String
+  summaryTitle: String
+  paragraphTitle: String
+  explainatoryParagraph: String
+  videoTitle: String
+  videoLink: String
+  videoCover: ID
+  eventLocation: String
+  publishedAt: DateTime
+}
+
+type VideoPage {
+  id: ID! @deprecated(reason: "Use `documentId` instead")
+  documentId: ID!
+  attributes: VideoPage! @deprecated(reason: "Use root level fields instead")
+  data: VideoPage! @deprecated(reason: "Use root level fields instead")
+  slug: String!
+  title: String!
+  subtitle: String
+  summaryTitle: String!
+  paragraphTitle: String
+  explainatoryParagraph: String
+  videoTitle: String!
+  videoLink: String!
+  videoCover: UploadFile!
+  eventLocation: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type VideoPageEntityResponseCollection {
+  nodes: [VideoPage!]!
+  pageInfo: Pagination!
+  data: [VideoPage!]! @deprecated(reason: "Use `nodes` field instead")
+  meta: ResponseCollectionMeta! @deprecated(reason: "Use the `pageInfo` field instead")
+}
+
+type VideoPageRelationResponseCollection {
+  nodes: [VideoPage!]!
+  data: [VideoPage!]! @deprecated(reason: "Use `nodes` field instead")
+}
+
+union GenericMorph = ComponentBasicVideo | ComponentBasicStringArray | ComponentBasicFile | ComponentBasicEventSlide | ComponentBasicEventAttendance | UploadFile | I18NLocale | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Article | Banner | DeveloperEmail | EmailTemplate | Event | EventActivity | Job | Paper | PaperGroup | TeamMember | VideoGroup | VideoPage
+
+input FileInfoInput {
+  name: String
+  alternativeText: String
+  caption: String
+}
+
+type UsersPermissionsMe {
+  id: ID!
+  documentId: ID!
+  username: String!
+  email: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsMeRole
+}
+
+type UsersPermissionsMeRole {
+  id: ID!
+  name: String!
+  description: String
+  type: String
+}
+
+input UsersPermissionsRegisterInput {
+  username: String!
+  email: String!
+  password: String!
+}
+
+input UsersPermissionsLoginInput {
+  identifier: String!
+  password: String!
+  provider: String! = "local"
+}
+
+type UsersPermissionsPasswordPayload {
+  ok: Boolean!
+}
+
+type UsersPermissionsLoginPayload {
+  jwt: String
+  user: UsersPermissionsMe!
+}
+
+type UsersPermissionsCreateRolePayload {
+  ok: Boolean!
+}
+
+type UsersPermissionsUpdateRolePayload {
+  ok: Boolean!
+}
+
+type UsersPermissionsDeleteRolePayload {
+  ok: Boolean!
+}
+
+input PaginationArg {
+  page: Int
+  pageSize: Int
+  start: Int
+  limit: Int
+}
+
+type Query {
+  uploadFile(documentId: ID!, status: PublicationStatus = PUBLISHED): UploadFile
+  uploadFiles_connection(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): UploadFileEntityResponseCollection
+  uploadFiles(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): [UploadFile]!
+  i18NLocale(documentId: ID!, status: PublicationStatus = PUBLISHED): I18NLocale
+  i18NLocales_connection(filters: I18NLocaleFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): I18NLocaleEntityResponseCollection
+  i18NLocales(filters: I18NLocaleFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): [I18NLocale]!
+  reviewWorkflowsWorkflow(documentId: ID!, status: PublicationStatus = PUBLISHED): ReviewWorkflowsWorkflow
+  reviewWorkflowsWorkflows_connection(filters: ReviewWorkflowsWorkflowFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): ReviewWorkflowsWorkflowEntityResponseCollection
+  reviewWorkflowsWorkflows(filters: ReviewWorkflowsWorkflowFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): [ReviewWorkflowsWorkflow]!
+  reviewWorkflowsWorkflowStage(documentId: ID!, status: PublicationStatus = PUBLISHED): ReviewWorkflowsWorkflowStage
+  reviewWorkflowsWorkflowStages_connection(filters: ReviewWorkflowsWorkflowStageFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): ReviewWorkflowsWorkflowStageEntityResponseCollection
+  reviewWorkflowsWorkflowStages(filters: ReviewWorkflowsWorkflowStageFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): [ReviewWorkflowsWorkflowStage]!
+  usersPermissionsRole(documentId: ID!, status: PublicationStatus = PUBLISHED): UsersPermissionsRole
+  usersPermissionsRoles_connection(filters: UsersPermissionsRoleFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): UsersPermissionsRoleEntityResponseCollection
+  usersPermissionsRoles(filters: UsersPermissionsRoleFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): [UsersPermissionsRole]!
+  usersPermissionsUser(documentId: ID!, status: PublicationStatus = PUBLISHED): UsersPermissionsUser
+  usersPermissionsUsers_connection(filters: UsersPermissionsUserFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): UsersPermissionsUserEntityResponseCollection
+  usersPermissionsUsers(filters: UsersPermissionsUserFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): [UsersPermissionsUser]!
+  article(documentId: ID!, status: PublicationStatus = PUBLISHED): Article
+  articles_connection(filters: ArticleFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): ArticleEntityResponseCollection
+  articles(filters: ArticleFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): [Article]!
+  banner(status: PublicationStatus = PUBLISHED): Banner
+  developerEmail(documentId: ID!, status: PublicationStatus = PUBLISHED): DeveloperEmail
+  developerEmails_connection(filters: DeveloperEmailFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): DeveloperEmailEntityResponseCollection
+  developerEmails(filters: DeveloperEmailFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): [DeveloperEmail]!
+  emailTemplate(documentId: ID!, status: PublicationStatus = PUBLISHED): EmailTemplate
+  emailTemplates_connection(filters: EmailTemplateFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): EmailTemplateEntityResponseCollection
+  emailTemplates(filters: EmailTemplateFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): [EmailTemplate]!
+  event(documentId: ID!, status: PublicationStatus = PUBLISHED): Event
+  events_connection(filters: EventFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): EventEntityResponseCollection
+  events(filters: EventFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): [Event]!
+  eventActivity(documentId: ID!, status: PublicationStatus = PUBLISHED): EventActivity
+  eventActivities_connection(filters: EventActivityFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): EventActivityEntityResponseCollection
+  eventActivities(filters: EventActivityFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): [EventActivity]!
+  job(documentId: ID!, status: PublicationStatus = PUBLISHED): Job
+  jobs_connection(filters: JobFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): JobEntityResponseCollection
+  jobs(filters: JobFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): [Job]!
+  paper(documentId: ID!, status: PublicationStatus = PUBLISHED): Paper
+  papers_connection(filters: PaperFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): PaperEntityResponseCollection
+  papers(filters: PaperFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): [Paper]!
+  paperGroup(documentId: ID!, status: PublicationStatus = PUBLISHED): PaperGroup
+  paperGroups_connection(filters: PaperGroupFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): PaperGroupEntityResponseCollection
+  paperGroups(filters: PaperGroupFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): [PaperGroup]!
+  teamMember(documentId: ID!, status: PublicationStatus = PUBLISHED): TeamMember
+  teamMembers_connection(filters: TeamMemberFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): TeamMemberEntityResponseCollection
+  teamMembers(filters: TeamMemberFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): [TeamMember]!
+  videoGroup(documentId: ID!, status: PublicationStatus = PUBLISHED): VideoGroup
+  videoGroups_connection(filters: VideoGroupFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): VideoGroupEntityResponseCollection
+  videoGroups(filters: VideoGroupFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): [VideoGroup]!
+  videoPage(documentId: ID!, status: PublicationStatus = PUBLISHED): VideoPage
+  videoPages_connection(filters: VideoPageFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): VideoPageEntityResponseCollection
+  videoPages(filters: VideoPageFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): [VideoPage]!
+  me: UsersPermissionsMe
+}
+
+type Mutation {
+  createReviewWorkflowsWorkflow(status: PublicationStatus = PUBLISHED, data: ReviewWorkflowsWorkflowInput!): ReviewWorkflowsWorkflow
+  updateReviewWorkflowsWorkflow(documentId: ID!, status: PublicationStatus = PUBLISHED, data: ReviewWorkflowsWorkflowInput!): ReviewWorkflowsWorkflow
+  deleteReviewWorkflowsWorkflow(documentId: ID!): DeleteMutationResponse
+  createReviewWorkflowsWorkflowStage(status: PublicationStatus = PUBLISHED, data: ReviewWorkflowsWorkflowStageInput!): ReviewWorkflowsWorkflowStage
+  updateReviewWorkflowsWorkflowStage(documentId: ID!, status: PublicationStatus = PUBLISHED, data: ReviewWorkflowsWorkflowStageInput!): ReviewWorkflowsWorkflowStage
+  deleteReviewWorkflowsWorkflowStage(documentId: ID!): DeleteMutationResponse
+  createArticle(status: PublicationStatus = PUBLISHED, data: ArticleInput!): Article
+  updateArticle(documentId: ID!, status: PublicationStatus = PUBLISHED, data: ArticleInput!): Article
+  deleteArticle(documentId: ID!): DeleteMutationResponse
+  updateBanner(status: PublicationStatus = PUBLISHED, data: BannerInput!): Banner
+  deleteBanner: DeleteMutationResponse
+  createDeveloperEmail(status: PublicationStatus = PUBLISHED, data: DeveloperEmailInput!): DeveloperEmail
+  updateDeveloperEmail(documentId: ID!, status: PublicationStatus = PUBLISHED, data: DeveloperEmailInput!): DeveloperEmail
+  deleteDeveloperEmail(documentId: ID!): DeleteMutationResponse
+  createEmailTemplate(status: PublicationStatus = PUBLISHED, data: EmailTemplateInput!): EmailTemplate
+  updateEmailTemplate(documentId: ID!, status: PublicationStatus = PUBLISHED, data: EmailTemplateInput!): EmailTemplate
+  deleteEmailTemplate(documentId: ID!): DeleteMutationResponse
+  createEvent(status: PublicationStatus = PUBLISHED, data: EventInput!): Event
+  updateEvent(documentId: ID!, status: PublicationStatus = PUBLISHED, data: EventInput!): Event
+  deleteEvent(documentId: ID!): DeleteMutationResponse
+  createEventActivity(status: PublicationStatus = PUBLISHED, data: EventActivityInput!): EventActivity
+  updateEventActivity(documentId: ID!, status: PublicationStatus = PUBLISHED, data: EventActivityInput!): EventActivity
+  deleteEventActivity(documentId: ID!): DeleteMutationResponse
+  createJob(status: PublicationStatus = PUBLISHED, data: JobInput!): Job
+  updateJob(documentId: ID!, status: PublicationStatus = PUBLISHED, data: JobInput!): Job
+  deleteJob(documentId: ID!): DeleteMutationResponse
+  createPaper(status: PublicationStatus = PUBLISHED, data: PaperInput!): Paper
+  updatePaper(documentId: ID!, status: PublicationStatus = PUBLISHED, data: PaperInput!): Paper
+  deletePaper(documentId: ID!): DeleteMutationResponse
+  createPaperGroup(status: PublicationStatus = PUBLISHED, data: PaperGroupInput!): PaperGroup
+  updatePaperGroup(documentId: ID!, status: PublicationStatus = PUBLISHED, data: PaperGroupInput!): PaperGroup
+  deletePaperGroup(documentId: ID!): DeleteMutationResponse
+  createTeamMember(status: PublicationStatus = PUBLISHED, data: TeamMemberInput!): TeamMember
+  updateTeamMember(documentId: ID!, status: PublicationStatus = PUBLISHED, data: TeamMemberInput!): TeamMember
+  deleteTeamMember(documentId: ID!): DeleteMutationResponse
+  createVideoGroup(status: PublicationStatus = PUBLISHED, data: VideoGroupInput!): VideoGroup
+  updateVideoGroup(documentId: ID!, status: PublicationStatus = PUBLISHED, data: VideoGroupInput!): VideoGroup
+  deleteVideoGroup(documentId: ID!): DeleteMutationResponse
+  createVideoPage(status: PublicationStatus = PUBLISHED, data: VideoPageInput!): VideoPage
+  updateVideoPage(documentId: ID!, status: PublicationStatus = PUBLISHED, data: VideoPageInput!): VideoPage
+  deleteVideoPage(documentId: ID!): DeleteMutationResponse
+  updateUploadFile(id: ID!, info: FileInfoInput): UploadFile!
+  deleteUploadFile(id: ID!): UploadFile
+
+  """Create a new role"""
+  createUsersPermissionsRole(data: UsersPermissionsRoleInput!): UsersPermissionsCreateRolePayload
+
+  """Update an existing role"""
+  updateUsersPermissionsRole(id: ID!, data: UsersPermissionsRoleInput!): UsersPermissionsUpdateRolePayload
+
+  """Delete an existing role"""
+  deleteUsersPermissionsRole(id: ID!): UsersPermissionsDeleteRolePayload
+
+  """Create a new user"""
+  createUsersPermissionsUser(data: UsersPermissionsUserInput!): UsersPermissionsUserEntityResponse!
+
+  """Update an existing user"""
+  updateUsersPermissionsUser(id: ID!, data: UsersPermissionsUserInput!): UsersPermissionsUserEntityResponse!
+
+  """Delete an existing user"""
+  deleteUsersPermissionsUser(id: ID!): UsersPermissionsUserEntityResponse!
+  login(input: UsersPermissionsLoginInput!): UsersPermissionsLoginPayload!
+
+  """Register a user"""
+  register(input: UsersPermissionsRegisterInput!): UsersPermissionsLoginPayload!
+
+  """Request a reset password token"""
+  forgotPassword(email: String!): UsersPermissionsPasswordPayload
+
+  """
+  Reset user password. Confirm with a code (resetToken from forgotPassword)
+  """
+  resetPassword(password: String!, passwordConfirmation: String!, code: String!): UsersPermissionsLoginPayload
+
+  """Change user password. Confirm with the current password."""
+  changePassword(currentPassword: String!, password: String!, passwordConfirmation: String!): UsersPermissionsLoginPayload
+
+  """Confirm an email users email address"""
+  emailConfirmation(confirmation: String!): UsersPermissionsLoginPayload
+}
