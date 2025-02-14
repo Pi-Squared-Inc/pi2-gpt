@@ -1,0 +1,2322 @@
+\documentclass{article}
+\usepackage{url}
+\usepackage{graphicx} 
+\usepackage{listings,color,xcolor, nameref}
+\usepackage{todonotes}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{hyperref}
+
+
+
+\definecolor{kterminalred}{RGB}{188,46,47}
+\definecolor{ksyntaxgreen}{RGB}{63,131,21}
+\definecolor{ksyntaxblack}{RGB}{2,15,41}
+\definecolor{kcomments}{RGB}{78,137,136}
+\definecolor{verylightgray}{gray}{0.98}
+
+
+\lstdefinelanguage{K}{
+	keywords=[1]{ensures, priorities, require, requires, rule, claim, sort, syntax}, 
+	keywordstyle=[1]\color{ksyntaxgreen}\bfseries,
+	keywords=[2]{configuration, context, endmodule, imports, left, module, non-assoc, right, when}, 
+	keywordstyle=[2]\color{ksyntaxblack}\bfseries,
+	keywords=[3]{alias,alias-rec,anywhere,bracket,concrete,context,cool,freshGenerator,function,functional,heat,hook,hybrid,klabel,left,macro,macro-rec,memo,owise,priority,result,right,seqstrict,simplification,smtlib,strict,symbol,token,unboundVariables},	
+	keywordstyle=[3]\color{ksyntaxblack}\bfseries,
+	sensitive=false,
+	comment=[l][\color{kcomments}]{//}, 
+    morecomment=[s][\color{ksyntaxgreen}]{<}{>}, 
+    identifierstyle=\color{blue}, 
+	stringstyle=\color{kterminalred}\ttfamily, 
+	morestring=[b]', 
+	morestring=[b]"
+}
+
+\lstset{
+	language=K,
+	backgroundcolor=\color{white},
+	extendedchars=true,
+	basicstyle=\footnotesize\ttfamily,
+	showstringspaces=false,
+	showspaces=false,
+	numbers=left,
+	numberstyle=\footnotesize,
+	numbersep=9pt,
+	tabsize=2,
+	breaklines=true,
+	showtabs=false,
+        linewidth=12cm,
+	frame=single,
+	frameround=tttt,
+        literate={~} {$\sim$}{1}
+}
+\let\Bbbk\relax 
+\usepackage{amsmath,amsthm,amssymb}
+\allowdisplaybreaks
+\usepackage{booktabs}
+\usepackage{cleveref}
+\usepackage{color}
+\usepackage{mathtools}
+\usepackage{natbib}
+\setcitestyle{square, comma, numbers,sort&compress}
+\usepackage{prftree}
+\usepackage{subcaption}
+\usepackage{scalerel}
+\usepackage[normalem]{ulem} 
+\usepackage{xspace}
+\usepackage{multirow}
+\usepackage[cache=false]{minted}
+\usepackage[altpo,epsilon]{backnaur}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{comment}
+\usepackage{listings}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{remark}{Remark}[section]
+\newtheorem{assumption}{Assumption}[section]
+
+\newcommand{\xc}[1]{{\color{blue}XC: #1}}
+\newcommand{\bc}[1]{{\color{orange}BC: #1}}
+\newcommand{\gr}[1]{{\color{red}GR: #1}}
+\newcommand{\zl}[1]{{\color{green}ZL: #1}}
+
+
+
+\newcommand{\imp}{\to}
+\newcommand{\K}{$\mathbb{K}$\xspace}
+\newcommand{\KH}{Haskell-\K}
+\newcommand{\KL}{LLVM-\K}
+\newcommand{\KO}{OCaml-\K}
+\newcommand{\as}{\textbf{ as }}
+\newcommand{\mto}{\mapsto}
+\newcommand{\requires}{\mathbin{\vartriangleleft}}
+\newcommand{\oor}{\textbf{ or }}
+\newcommand{\sd}{\cdot}
+\newcommand{\mtc}{\preceq}
+\newcommand{\nmtc}{\npreceq}
+\newcommand{\vvp}{\vec{p}}
+\newcommand{\vvv}{\vec{v}}
+\newcommand{\vvrho}{\vec{\rho}}
+\newcommand{\vvo}{\vec{o}}
+\newcommand{\vvx}{\vec{x}}
+\newcommand{\defeq}{=_{\text{def}}}
+\newcommand{\rhobar}{\bar{\rho}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\MatchingRow}{\mathsf{MatchingRow}}
+\newcommand{\SortCategory}{\mathbf{SortCategory}}
+\newcommand{\NormalSort}{\mathbf{NormalSort}}
+\newcommand{\ListSort}{\mathbf{ListSort}}
+\newcommand{\SetSort}{\mathbf{SetSort}}
+\newcommand{\MapSort}{\mathbf{MapSort}}
+\newcommand{\cln}{{:}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\eventually}{\diamond}
+\newcommand{\cl}[2]{\left\langle #1 \right\rangle_{\texttt{#2}}}
+\newcommand{\tts}{\texttt{s}}
+\newcommand{\ttn}{\texttt{n}}
+\newcommand{\ldot}{\ld}
+\newcommand{\ld}{.\,}
+\newcommand{\snext}{\bullet}
+\newcommand{\inh}[1]{[\![#1]\!]}
+\newcommand{\prule}[1]{(\textsc{#1})}
+\newcommand{\CC}{\mathcal{C}}
+\newcommand{\vs}{\mathit{sort}}
+\newcommand{\FV}{\mathit{FV}}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\newcommand{\Unifier}{\mathit{Unif}}
+\newcommand{\code}[1]{{\small \ttfamily #1}}
+\newcommand{\kcode}[1]{\texttt{#1}}
+\newcommand{\df}[1]{{\uline{#1}}}
+\newcommand{\scat}[1]{$\langle$\textnormal{\textit{#1}}$\rangle$}
+\newcommand{\vphl}{\varphi_{\mathit{left}}}
+\newcommand{\vphr}{\varphi_{\mathit{right}}}
+\newcommand{\To}{\Rightarrow}
+\newcommand{\Cfg}{\mathit{Cfg}}
+\newcommand{\wcln}{\,\cln\,}
+\newcommand{\vph}{\varphi}
+\newcommand{\OneStep}{\mathit{OneStep}}
+\newcommand{\Sbt}{S_\mathrm{builtin}}
+\newcommand{\Sur}{S_\mathrm{user}}
+\newcommand{\st}[1]{\textit{#1}}
+\newcommand{\ind}[1]{\textit{is}_{#1}}
+\newcommand{\true}{\mathit{true}}
+\newcommand{\false}{\textit{false}}
+\newcommand{\Sreg}{S_\regrm}
+\newcommand{\Slist}{S_\listrm}
+\newcommand{\Sset}{S_\setrm}
+\newcommand{\Smap}{S_\maprm}
+\newcommand{\Pat}{\textsc{Pat}}
+\newcommand{\LPat}{\textsc{LPat}}
+\newcommand{\Val}{\textsc{Val}}
+\newcommand{\CPat}{\textsc{CPat}}
+\newcommand{\Occ}{\textsc{Occ}}
+\newcommand{\sslash}{/\!/\ }
+\newcommand{\vrho}{\varrho}
+\newcommand{\act}{\mathit{act}}
+\newcommand{\rl}{\mathit{rule}}
+\newcommand{\Rules}{\textsc{Rules}}
+\newcommand{\tbd}{\mathsf{tbd}}
+\newcommand{\Act}{\textsc{Act}}
+\newcommand{\CT}{C}
+\newcommand{\ct}{c}
+\newcommand{\tmax}{t_\text{max}}
+\newcommand{\kmax}{k_\text{max}}
+\newcommand{\lenmax}{\ftlenmax}
+\newcommand{\ftlenmax}{\mathit{ftlen}_\text{max}}
+\newcommand{\col}{\mathit{col}}
+\newcommand{\vmap}{\mathit{vmap}}
+\newcommand{\regrm}{\mathrm{regular}}
+\newcommand{\listrm}{\mathrm{list}}
+\newcommand{\setrm}{\mathrm{set}}
+\newcommand{\maprm}{\mathrm{map}}
+\newcommand{\Creg}{C_\regrm}
+\newcommand{\Clist}{C_\listrm}
+\newcommand{\rle}{\prec}
+\newcommand{\vvpa}{\vvp_{<j}}
+\newcommand{\vvpb}{\vvp_{>j}}
+\newcommand{\IMP}{\textsf{IMP}\xspace}
+\newcommand{\impk}{\code{imp.k}}
+\newcommand{\LAMBDA}{\textsf{LAMBDA}\xspace}
+\newcommand{\cell}[1]{\kcode{<#1/>}}
+\newcommand{\phil}{\varphi_\mathit{lhs}}
+\newcommand{\phir}{\varphi_\mathit{rhs}}
+\newcommand{\phicfg}{\varphi_\mathit{cfg}}
+\newcommand{\listcst}{\mathsf{Len}}
+\newcommand{\emptymap}{\mathsf{Empty}}
+\newcommand{\mapkey}{\mathsf{Key}}
+\newcommand{\mapchoice}{\mathsf{Choice}}
+\newcommand{\pr}[1]{\left\langle #1 \right\rangle}
+\newcommand{\sol}{\mathsf{sol}}
+\newcommand{\actb}{\mathsf{act}}
+\newcommand{\condb}{\mathsf{cond}}
+\newcommand{\lslen}{\mathsf{ranges}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\pp}[2]{\PP[#1,#2]}
+\newcommand{\pprow}[1]{\PP[#1,*]}
+\newcommand{\ppcol}[1]{\PP[*,#1]}
+\newcommand{\prio}{\mathsf{priority}}
+\newcommand{\front}{\mathsf{front}}
+\newcommand{\tail}{\mathsf{tail}}
+\newcommand{\mapp}{\vec{p_s} \mapsto \vec{q_s}}
+\newcommand{\mappPrime}{\vec{p'_s} \mapsto \vec{q'_s}}
+\newcommand{\bestkey}{\mathsf{BestKey}}
+\newcommand{\block}{\texttt{block}\xspace}
+\newcommand{\children}{\texttt{children}\xspace}
+\newcommand{\blockheader}{\texttt{blockheader}\xspace}
+
+
+\newcommand{\suc}{\mathit{succ}}
+\newcommand{\Nat}{\mathit{Nat}}
+\newcommand{\plus}{\mathit{plus}}
+\newcommand{\mult}{\mathit{mult}}
+\newcommand{\zero}{\mathit{zero}}
+\newcommand{\one}{\mathit{one}}
+\newcommand{\Sort}{\mathit{Sort}}
+\newcommand{\Int}{\mathit{Int}}
+\newcommand{\AExp}{\mathit{AExp}}
+\newcommand{\BExp}{\mathit{BExp}}
+\newcommand{\Stmt}{\mathit{Stmt}}
+\newcommand{\Block}{\mathit{Block}}
+\newcommand{\Id}{\mathit{Id}}
+\newcommand{\Ids}{\mathit{Ids}}
+\newcommand{\AExps}{\mathit{AExps}}
+\newcommand{\Stmts}{\mathit{Stmts}}
+\newcommand{\List}{\mathit{List}}
+\newcommand{\iif}{\mathit{if}}
+\newcommand{\while}{\mathit{while}}
+\newcommand{\plusAExp}{\mathit{+_\AExp}}
+\newcommand\scslash{\stretchrel*{$/$}{\textsc{e}}}
+\newcommand{\divAExp}{\mathit{\scslash_\AExp}}
+\newcommand{\cat}{\mathit{cat}}
+\newcommand{\KVar}{\mathit{V}}
+\newcommand{\DT}{\mathit{DT}}
+\newcommand{\iswildcard}{\mathsf{isWildcard}}
+\newcommand{\frontlen}{\mathit{frontlen}}
+\newcommand{\taillen}{\mathit{taillen}}
+\newcommand{\ot}{\mathit{ot}}
+\newcommand{\cond}{\mathit{cond}}
+\newcommand{\listsize}{\mathit{listsize}}
+\newcommand{\cfg}{\mathit{cfg}}
+\newcommand{\asp}[2]{#1 \; \mathtt{as} \; #2}
+
+\newcommand{\ListItem}{\mathsf{ListItem}}
+\newcommand{\SetItem}{\mathsf{SetItem}}
+\newcommand{\MapItem}{\mathsf{MapItem}}
+\newcommand{\sortList}{\mathsf{List}}
+\newcommand{\sortMap}{\mathsf{Map}}
+\newcommand{\sortSet}{\mathsf{Set}}
+\newcommand{\siz}{\mathsf{size}}
+\newcommand{\rem}{\mathsf{rem}}
+\newcommand{\val}{\mathsf{val}}
+\newcommand{\key}{\mathsf{key}}
+\newcommand{\fsh}{\mathsf{fresh}}
+\newcommand{\iter}{\mathsf{iter}}
+\newcommand{\pat}{\mathsf{pat}}
+\newcommand{\fail}{\mathsf{fail}}
+\newcommand{\Match}{\mathsf{Match}}
+\newcommand{\Compile}{\mathsf{Compile}}
+\newcommand{\Leaf}{\mathsf{Leaf}}
+\newcommand{\Success}{\mathsf{Success}}
+\newcommand{\CheckNull}{\mathsf{CheckNull}}
+\newcommand{\IterHasNext}{\mathsf{IterHasNext}}
+\newcommand{\Fail}{\mathsf{Fail}}
+\newcommand{\Switch}{\mathsf{Switch}}
+\newcommand{\FunctionDT}{\mathsf{Function}}
+\newcommand{\Pattern}{\mathsf{Pattern}}
+\newcommand{\Eval}{\mathsf{Eval}}
+\newcommand{\sfsum}{\mathsf{sum}}
+\newcommand{\IMPPP}{\mathsf{IMP++}}
+\newcommand{\llen}{\mathsf{length}}
+\newcommand{\patsig}{\mathsf{patsig}}
+\newcommand{\CompileRow}{\mathsf{CompileRow}}
+\newcommand{\listlen}{\mathsf{listlen}}
+\newcommand{\lhs}{\varphi_\textit{lhs}}
+\newcommand{\rhs}{\varphi_\textit{rhs}}
+
+\newcommand{\None}{None}
+
+\algblockdefx{Case}{EndCase}
+  [1]{\textbf{case} #1}
+  {\textbf{end case}}
+\newcommand{\CaseItem}[2]{\State #1 $ \to $ #2}
+\newcommand{\ret}{\textbf{return}\xspace}
+
+\algdef{SE}[SUBALG]{Indent}{EndIndent}{}{\algorithmicend\ }
+\algtext*{Indent}
+\algtext*{EndIndent}
+
+\bibliographystyle{ACM-Reference-Format}
+\setcitestyle{numbers}
+
+\title{Semantics-Based Execution and the LLVM Backend of the \K Framework\\\Large Version 1.0}
+\author{Pi Squared Inc.}
+\date{February 2025}
+
+
+\begin{document}
+
+\maketitle
+
+{\parbox{0.86\textwidth}{\small\em 
+It is suggested that the reader first read ``The Pi Squared Whitepaper''~\cite{pi2paper}.
+}}
+
+
+
+\begin{abstract}
+The \K framework is a semantics-based approach to language design and implementation. From a single definition of a language's syntax and operational semantics, a full set of tools can be extracted automatically, including a \emph{concrete interpreter} for programs in that language. In this paper, we identify the most critical performance bottleneck for such interpreters: compiling fast decision trees for a subset of associative-commutative pattern-matching problems. We demonstrate a decision tree-based compilation algorithm that substantially extends existing methods with support for fast runtime collection data structures. We show that LLVM-based interpreters generated by \K perform comparably to ones written by hand for interpreted languages such as EVM and are practical for real-world adoption.  Moreover, we show that optimizations that are only possible in the presence of a formal language semantics make Compositional Symbolic Execution (CSE), in fact, outperform manually-written language implementations.  Automatically generating efficient and correct-by-construction language implementations from formal semantics is the holy grail of the programming language field; after more than two decades of sustained innovation and engineering, \K is proudly almost there.
+\end{abstract}
+
+\newpage 
+
+\renewcommand{\contentsname}{Table of Contents}
+\tableofcontents
+
+\newpage
+
+\section{Introduction}
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{figs/k-vision-v3.png}
+  \caption{
+    The central vision of the \K Framework: from one formal definition of
+    a language's semantics, a full suite of important tooling can be derived
+    automatically.
+  }
+  \label{fig:k-vision}
+\end{figure}
+
+The \K framework~\cite{RS10} is a semantic framework that allows language
+designers to automatically and generically derive a full suite of tools from a
+single formal specification of their language. For example, \K can generate a
+parser, interpreter and symbolic deductive verifier~\cite{SPY+16} from this
+specification.
+The
+language-generic approach used by \K is scalable; many real-world programming
+languages have been formalized in \K, including C~\cite{ECR12},
+Java~\cite{BR15}, JavaScript~\cite{Park2015}, Python~\cite{Guth2013},
+Rust~\cite{Wang2018}, x86-64~\cite{Dasgupta2019}, the Ethereum virtual
+machine~\cite{HSZ+18}, and LLVM IR~\cite{Li2020}. The implementations obtained
+are suitable for commercial applications \cite{GHSR16, firefly}. 
+
+
+For a programming language $L$, the \K definition of $L$ consists of (1) the
+concrete syntax of $L$, as a conventional BNF grammar; (2) the state maintained
+by each program in $L$ during execution (its \emph{configuration}); and (3) the
+operational semantics of $L$ given as a set of rewrite rules. A rewrite rule
+$\lhs \To \rhs$ specifies a transition relation over configurations; any
+configuration that matches the pattern $\lhs$ can be rewritten into the
+configuration $\rhs$. The \K compiler transforms rules that act on local
+fragments of a configuration into efficient top-level rewrites of the entire
+configuration.
+
+A language-agnostic concrete interpreter is one of the most important tools that
+\K provides. From a \K definition of a language $L$, the \K compiler generates
+an interpreter for programs in $L$. It takes as input any configuration $\gamma$
+of $L$, and looks for a rewrite rule whose left-hand side is matched by
+$\gamma$. If such a rewrite rule exists, the interpreter applies it to $\gamma$
+and obtains a new configuration $\gamma'$ as specified by the right-hand side of
+the rule. Execution proceeds by repeatedly applying this process until no
+rewrite rules apply, in which case the execution terminates.
+
+
+
+In this paper we present \KL: a language-agnostic implementation strategy for \K
+concrete interpreters, where the pattern matching and rule application
+components of a \K language definition are compiled to efficient native code via
+LLVM IR~\cite{Lattner2004}.
+
+Much of the work done by a \K concrete interpreter is \emph{pattern matching},
+where terms in \K's internal term representation (KORE\cite{kore-github}) are matched against
+patterns in order to bind variables in rewrite rules. This is a well-studied
+problem, with solutions implemented by every mainstream functional programming
+language.
+
+An initial version of the \K compiler (\KO) generated OCaml code for
+each \K pattern, and relied on the OCaml compiler to provide efficient pattern
+matching. However, this approach failed to scale: the terms generated by \K
+triggered pessimal behavior in the OCaml compiler, leading to either impractical
+compilation times, or slow execution. A specialized
+pattern matching compiler for \K was therefore required.
+
+
+The primary contribution of this paper is an algorithm for compiling \K pattern
+matching problems to efficient native code. This algorithm originates in the
+canonical work of \citet{Maranget2008}, but is substantially extended with
+features specific to \K; we define pattern matching for collection data types
+(lists, maps, and sets) and pattern matching for conditional rewrite rules.
+The algorithms presented in this paper are instantiated in our implementation of
+\KL \cite{anonymous_2022_7298780}, which significantly outperformed \KO.
+
+
+
+We evaluated the performance of \KL interpreters in two contexts: Comparing the \K implementation of EVM, {\K}EVM, with the Go implementation of EVM, Geth, using the Ethereum test suite \cite{ethereum-tests} and evaluating both EVM implementations against the Solidity interpreter generated by \KL with and without CSE optimization in a program that executes a thousand swap operations from the UniSwap V2 contract \cite{Adams2020UniswapVC}. The first evaluation shows that we have some room to outperform Geth, but that {\K}EVM without any CSE is already performance-wise comparable with the most used EVM implementation around. The second experiment proved that a language-specific interpreter generated by \KL can outperform Geth, being 57\
+.   
+The structure of this paper is as follows. First, in \Cref{sec:related}, we
+review relevant related work in pattern matching compilation and term rewriting
+engines. Then, to contextualize the rest of the paper,  \Cref{sec:imp} gives a
+brief overview of a \K semantics.
+\Cref{sec:overview} gives a high-level overview of \KL. \Cref{sec:k-llvm,sec:decomp,sec:compile,sec:heuristics} detail the algorithms
+and technical contributions of \KL, which are evaluated in \Cref{sec:eval}.
+
+
+
+
+
+
+
+
+
+
+\begin{comment}
+\subsection{PL Design \& Implementation: State of the Art}
+
+\bc{
+  I'd rephrase the use of SotA here - we're arguing that our approach is SotA;
+  things like GCC etc. are rather the accepted hegemony that we can improve on.
+
+  Perhaps ``informal'' is better phrased as non-mechanised?
+}
+
+The state of the art in programming language design is to develop the 
+implementations, tools, and documentations for each individual language, 
+\emph{separately}. 
+For example, the C programming language has well-known compilers like
+gcc \cite{gcc} and clang \cite{clang},
+but there are many other C tools.
+For example, there are C interpreters such as TrustInSoft \cite{trustinsoft}
+that target at detecting undefined behaviors of C programs,
+C model checkers such as CBMC \cite{KT14} that aim at 
+exploring the state space of C programs, and
+C verifiers such as VCC \cite{CDH+09a} that use symbolic reasoning
+to formally prove properties of C programs.
+C also has informal documentations such as C99, C11, and C18, which are 
+manually reviewed by a language committee. 
+We summarize the above scenario in \Cref{fig:C-tools}. 
+
+\bc{
+  We don't need all of these figures. I'd keep the standard K octopus and drop
+  the other two.
+}
+
+\begin{figure}
+\includegraphics[width=0.6\columnwidth]{figs/C-tools.png}
+\caption{C tools are developed separately.}
+\label{fig:C-tools}
+\end{figure}
+
+Regarding \Cref{fig:C-tools}, several concerns arise naturally:
+\begin{enumerate}
+\item Language tools are developed in an ad-hoc way. Language developers and 
+program analysis experts rely on their informal understanding of the
+language to develop the tools, which may not be consistent across different 
+tools or different versions of the same tool. 
+\item Languages standards are informal. Therefore, there is no means to 
+formally prove a tool is consistent with the standards. In fact, many are not 
+\citep{todo}. 
+\item Language tools are often developed from scratch and share very little code
+or functionality with each other, which cause a waste of resource and duplicate 
+efforts in ``re-inventing the wheels''.
+\item Language tools need be updated when a new language standard is published. 
+In other words, they are inclined to become deprecated.
+\end{enumerate}
+
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.6\columnwidth]{figs/LT.png}
+\caption{State of the art in programming language design.}
+\label{fig:PL-design}
+\end{figure}
+
+The above scenario unfolded for various programming languages over and over
+again for more than 50 years.
+And it is still going on, as shown in \Cref{fig:PL-design}.
+If we have $L$ programming languages and $T$ tools, then we need
+to develop and maintain at least $L \times T$ systems that share little code
+or functionality.
+This costs a waste of talent and resources in doing essentially
+the same thing in developing the same tools but for different languages.
+
+In conclusion, the state-of-the-art programming language design
+generates language implementations and tools,
+some of which we use to ensure the correctness, reliability, and security of 
+programs and software systems written in that language,
+which may be unreliable themselves.
+\end{comment}
+
+\begin{comment}
+\subsection{An Ideal Language Framework}
+\label{sec:ideal}
+
+\bc{
+  I think given the space available we could tone down this section - we aren't
+  trying to sell the grand unified vision of K; rather, we have a tool for
+  which previous implementations suffered from performance issues. We can still
+  say what K does and why that's important
+}
+
+We hold a vision of an ideal language framework that makes programming language 
+design a more organized and scientifically principled process,
+reduces duplicated work in tool development, 
+increases the reusability and reliability of analysis tools,
+and increases the reliability and security of
+the execution, verification, and testing environments of computer programs.
+
+In an ideal language semantic framework, all languages must be rigorously 
+designed using formal methods, and implementations of language tools must be 
+provably correct with respect to the formal language semantics. 
+As shown in \Cref{fig:k-vision},
+once the formal language definition of a given (but arbitrary) programming 
+language is given, the ideal framework generates all the tools for that language
+including parsers, interpreters, compilers, state-space explorers, model 
+checkers, deductive program verifiers, etc..
+All language tools are directly derived from the reference formal language 
+definition by the ideal framework.
+
+The ideal framework has the following characteristics:
+\begin{itemize}
+\item The framework is \emph{language-independent}, in the sense that
+it uses the same generic method to generate language tools from the formal
+language definitions, for all programming languages.
+\item The framework should be \emph{expressive}, to define the formal syntax
+and
+semantics of any programming language, with an intuitive and user-friendly
+\emph{frontend interface}, so the formal definitions can be understood not only
+by experts but also by non-semanticists.
+\item The framework should support \emph{modular development}, where formal
+definitions of large languages can be divided into smaller and more primitive
+modules. Language features should be loosely coupled, and language designers
+can easily add new features without revisiting existing definitions.
+\item The framework should support \emph{testing-driven development}, where
+basic language tools such as the parser and the interpreter and/or compiler
+are automatically generated from language definitions
+for language designers to execute and test the semantics while they are
+defining it, by running lots of test programs and see if they get the intended
+results.
+\item \bc{We don't talk about proving or the Haskell backend, so these items
+  should get cut or be de-emphasised}. The framework should have a mathematically solid logical foundation, in
+the sense that every semantic definition yields a \emph{logical theory} of
+a foundational logic (see Section~\ref{sec:MmL}) and all language tools are
+best-effort implementations of logical reasoning of the foundational logic
+within the given logical theory.
+\item The framework should have a \emph{minimal trustbase} that is fully
+comprehensible and accessible to users.
+The framework should provide \emph{proof objects} as correctness certificates
+for all tasks it does. Proof objects can be mechanically and quickly checked
+by third-party proof checkers, so their correctness can not be compromised.
+\end{itemize}
+\end{comment}
+
+\begin{comment}
+
+\subsection{\K Framework}
+
+{\K framework} (\url{http://kframework.org}) is an effort in pursuing and
+realizing the ideal language framework. 
+\K is a rewrite-based executable semantic framework where programming 
+languages, type systems and formal analysis tools can be defined using 
+configurations, computations and rules. Configurations organize the state in 
+units called cells, which are labeled and can be nested. Computations carry 
+computational meaning as special nested list structures sequentializing 
+computational tasks, such as fragments of program. Computations extend the 
+original language abstract syntax. K (rewrite) rules make it explicit which 
+parts of the term they read-only, write-only, read-write, or do not care about. 
+This makes K suitable for defining truly concurrent languages even in the 
+presence of sharing. Computations are like any other terms in a rewriting 
+environment: they can be matched, moved from one place to another, modified, or 
+deleted. This makes K suitable for defining control-intensive features such as 
+abrupt termination, exceptions or call/cc.
+
+\bc{
+  This can be shrunk down to one paragraph, I think. It's impressive that we can
+  do all this but we probably don't need a full page of it (and there are some
+  claims like Rust being blazingly fast that are a bit unsubstantial for our
+  purposes).
+
+  Also, similarly to my point above, I think that it might be worth explaining
+  how the other backends worked wrt. pattern-matching, and why those
+  implementations ran into performance issues.
+}
+
+The first \K backend was implemented in Maude \cite{todo}. 
+Since then, it has been re-implemented in Coq, OCaml, and Java, with new 
+features constantly added. 
+In the following, we list a few important milestones of \K's practical 
+application:
+\begin{enumerate}
+\item \textbf{C}. A complete formal semantics of C was defined 
+in \cite{undefinedness-c}
+that aims at capturing all the undefined behaviors.
+This semantics powers the commercial RV-Match tool \cite{rv-match},
+developed and maintained by Runtime Verification Inc. (RV) 
+founded by the second author,
+aiming at mathematically rigorous 
+dynamic checking of C programs in compliance with the ISO C11 Standard. 
+\item \textbf{Java}. A complete formal semantics of Java was defined 
+in \cite{java-semantics}
+that covers all language features and is
+extensively tested on a test suite developed
+in parallel with the semantics
+in a test-driven manner;
+the test suite itself was an important outcome 
+because at the time Java appeared to have no publicly 
+ conformance test suite.
+\item \textbf{JavaScript}. A complete formal semantics of JavaScript was 
+defined in \cite{kjs} and 
+thoroughly tested on the ECMAScript~5.1 conformance test 
+suite \cite{ecma2011262}.
+Among the existing JavaScript
+implementations at that time, only Chrome V8's passed all the 
+tests. In addition to a reference implementation of JavaScript, the 
+formal semantics also yields 
+a coverage metric for test suites,
+that is the set of \emph{semantic rules} it exercises
+(see Section~\ref{sec:imp++_semantics}). 
+It turned out that the ECMAScript 5.1 test suite was incomplete because it 
+missed some semantic rules. 
+By writing new tests to exercise those rules,
+we found bugs in production JavaScript engines like 
+Chrome V8, Safari WebKit, and Firefox SpiderMonkey. 
+\item \textbf{Python}.
+Defining the formal semantics of Python~3.2 is one of the first efforts
+to demonstrate \K's scalability \cite{python-semantics}.
+The semantics yields an interpreter and 
+tools for state space exploration, static reasoning,
+and formal verification. 
+The semantics was thoroughly tested and was 
+shown to perform as efficiently as CPython \cite{cpython}, which is the 
+reference implementation of Python.
+\item \textbf{Rust} .
+As an emerging system programming language, Rust runs blazingly fast, prevents 
+segfaults, and guarantees thread safety,
+by providing a set of safe constructors and an ownership 
+mechanism \cite{rust}. Nevertheless, a formal semantics is still needed 
+in order to formally verify Rust programs. 
+There are two parallel efforts to define the formal semantics of Rust in 
+\K \cite{krust-shanghai,krust-singapore}, both of which have completely 
+formalized the safe constructs and carried out experiments
+on symbolic execution and formal verification.
+\item \textbf{x86-64}.
+Low-level languages such as assembly languages can also be formalized in \K. 
+A formal semantics of x86-64 is defined in \cite{DPK+19},
+ which formalizes all the non-deprecated, sequential 
+user-level instructions of the x86-64 Haswell instruction set architecture,
+including 3,155 instruction variants that correspond to 774 mnemonics. 
+The semantics is fully executable and has been experimented on more than 7,000 
+instruction-level test cases and the GCC torture test suite.
+The experiment revealed bugs in the x86-64 reference manual and also other 
+existing semantics. 
+The formal semantics can be used for formal analysis such as processor 
+verification.
+\item \textbf{Ethereum Virtual Machine (EVM)}.
+EVM is a bytecode stack-based language which
+all smart contracts on the Ethereum blockchain are compiled to and then 
+executed by EVM interpreters \cite{wood2014ethereum}.
+A complete formal semantics of EVM, called KEVM, is defined in \cite{kevm},
+whose correctness and performance 
+are tests on over 40,000 EVM programs
+in the the official Ethereum test suite.
+\item \textbf{IELE}. 
+As an alternative to EVM,  
+IELE \cite{iele} is a \emph{verification friendly} virtual machine language
+that has significantly different language features from EVM
+such as a {register-based} architecture, 
+unbounded, arbitrarily-large integer arithmetic, 
+a simplified gas model design. 
+IELE was designed and implemented in a \emph{semantic-driven} manner,  
+whose virtual machine  was automatically generated from its formal semantics,
+making it the first virtual machine whose development and implementation
+were completely powered by formal methods.
+\end{enumerate}
+\end{comment}
+
+\begin{comment}
+\subsection{Challenges and Contributions}
+
+\bc{
+  This needs reworking to not mention the Haskell backend, or to mention and
+  then immediately discharge it.
+}
+
+There have been two main challenges with the existing \K implementations:
+performance and the ability to carry out complex symbolic analysis based on 
+formal semantics. 
+In terms of performance, the \K-generated language interpreters were much 
+slower than the interpreters written by humans. 
+In terms of the ability to carry out symbolic analysis, the previous \K 
+implementations \cite{oopsla16} only considered deductive program verification,
+but not other types of formal analysis. 
+
+In this work, we solve the first challenge by implementing a new backend based 
+on LLVM, denoted \KL. 
+\KL uses innovative algorithms for pattern matching and substitution and 
+improve the performance of program execution by several orders of magnitude. 
+Our experiments show that \KL generates interpreters that are \emph{faster}
+than hand-written interpreters for real languages, marking one of the most 
+important milestone.
+
+The second challenge is a small foundation for symbolic reasoning of language 
+properties. 
+Previously, symbolic reasoning in \K backends is implemented in an ad-hoc way. 
+In this work, we propose a new \K backend, \KH, that provides a set of symbolic 
+reasoning APIs and use them to implement all formal analysis, including 
+deductive program verifiers and bounded model checkers. 
+content...
+\end{comment}
+
+
+\section{Related Work} \label{sec:related}
+\subsection{Semantic Frameworks}
+
+There exist many semantic frameworks that allow the extraction of semantic tools
+from a formal definition of a programming language. Early work on
+\textsc{Centaur} \cite{BCD+88} compiled a \textsc{typol} \cite{Despeyroux1988}
+definition of a language's natural semantics to Prolog rules; these rules could
+then be queried by interactive tools such as a pretty-printer or interpreter.
+Even in this early work, the authors identify the performance of the underlying
+rule engine as a limitation of their approach, and suggest a specialized
+compiler for their Prolog rules as a potential solution.
+
+The \textsc{Spoofax} workbench collects a set of domain-specific languages and
+tools for designing and implementing programming languages: SDF \cite{Vis97} for
+syntax descriptions and parser generation, Stratego \cite{VBT98} for dynamic
+semantics and execution strategies, and FlowSpec \cite{SV17} for data-flow
+analysis. 
+
+Similarly, tools developed in other workbenches such as PLT Redex \cite{FFF09}
+also rely on the performance of an underlying language or runtime environment
+(here, Racket). This points to performant concrete execution and interpretation
+as a shared point of difficulty for language workbenches.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Rewrite Engines}
+
+The concrete execution strategy used by \KL has its roots in the \emph{term rewriting} literature. 
+\textsc{Maude} \cite{Clavel2007} is a rewrite engine based on order-sorted
+membership equational logic \cite{membership-algebra}.
+It is a high-performance system for specifying formal and computational systems, especially concurrent applications.  
+A key feature of \textsc{Maude} is its built-in unification algorithms that apply modulo
+ACUI axioms\footnote{Associativity, Commutativity, Unit and Idempotence.}.
+This ACUI reasoning capability is further improved by variant-based unification
+\cite{variant-based-narrowing}. 
+
+\textsc{ASF+SDF} \cite{asf-sdf} is a general-purpose specification framework
+based on algebraic specifications. 
+It has been used to define the syntax and formal semantics of programming languages, program transformations, and language transformations. 
+An ASF+SDF definition consists of two parts. The ASF (algebraic specification formalism)
+part specifies the formal semantics in terms of conditional rewrite rules.
+The SDF (syntax definition formalism) defines the concrete syntax of the target language. 
+ASF+SDF supports both interpretation and compilation of the rewrite rules. 
+The ASF2C compiler generates efficient C code that implements pattern matching and term traversal. 
+
+As part of its suite of tools, \textsc{Spoofax} \cite{spoofax} provides a
+term rewriting module that
+allows programmable rewriting strategies, permitting context-sensitive transformations. 
+Interpreters generated from a Spoofax definition rely on the Truffle
+\cite{Wurthinger2017} infrastructure to perform just-in-time specialization and
+compilation; this approach is more complex than \K's pure term-rewriting
+approach, and relies on a Java virtual machine rather than compiling to native
+code.
+
+
+\subsection{Pattern Matching Compilation}
+
+Much of the work in this paper deals with the compilation of pattern matching,
+one of the first accounts of which is given by \citet{Cardelli1984} in the
+context of an ML compiler; the subsequent work discussed in this section deals
+exclusively with similar ML-style patterns. The fundamental problem of
+\emph{ordering} is introduced here: how should the compiler decide the order in
+which to address the sub-components of a pattern matching problem to produce
+efficient code?
+
+As well as the ordering of sub-problems, generating efficient code from these
+structures is addressed by \citet{Augustsson1985}, who demonstrates an approach
+based on backtracking automata. That is, it is possible for the code they
+generate to proceed down an infeasible path, then be forced to re-examine part
+of the term being scrutinized. While doing so is clearly suboptimal, it is
+possible to ameliorate the performance impact of doing so through carefully
+chosen optimizations \cite{LeFessant2001}.
+
+The potential for backtracking can be avoided entirely by compiling pattern
+matching to decision trees (DAG-like structures with internal sharing)
+\cite{Maranget2008}; doing so can potentially produce larger code, but in
+practice performs comparably to the backtracking approach. In this paper, the \K
+compiler compiles to decision trees, and so much of the notation and terminology
+used is shared with \citet{Maranget2008}. Almost all pattern matching compilers
+perform some variant of decision tree compilation; the underlying approach is
+flexible enough to be adapted to contexts such as extensible languages
+\cite{Tobin-Hochstadt2011}, analysis of complex functional programming features
+\cite{Karachalias2015}, and dependently-typed languages \cite{Cockx2016}.
+
+\section{A Running Example of \K} \label{sec:imp}
+In this section, to provide context for the rest of the paper, we show a \K
+definition of \IMP; a minimal, prototypical imperative language. \IMP has
+arithmetic and boolean expressions, assignment statements, conditional
+statements, loops, and sequential composition of statements.
+\lstinputlisting[language=K,
+    numbers=none,
+    frame=none,
+    basicstyle=\footnotesize,
+    label={fig:k-imp-syntax},
+    caption={ Syntax module of the \K definition of \IMP, a simple imperative programming language. Syntax is defined as a familiar BNF grammar.}
+    ]{code/imp-syntax.k}
+
+
+\lstinputlisting[language=K,numbers=none,frame=none,basicstyle=\footnotesize, label={fig:k-imp-defintion}, caption={\K definition of the semantics of \IMP. These semantics are defined by a set of rewrite rules that transform \IMP syntax,  and eventually lower it into \K's standard library domains.}]{code/imp.k}
+
+
+\subsection{\IMP Syntax Definition}
+
+The \K definition of \IMP is shown in \Cref{fig:k-imp-syntax} and \Cref{fig:k-imp-defintion}. It consists of two
+modules: \kcode{IMP-SYNTAX} that defines the formal syntax of \IMP, and
+\kcode{IMP} that defines the operational semantics of \IMP using \K rewrite
+rules. \K syntax definitions are BNF grammars, with terminals represented by
+double-quoted strings (e.g.\ \kcode{"if"}, \kcode{"while"}), and non-terminals by
+capitalized words (e.g.\ \kcode{AExp}, \kcode{Int}, \kcode{Id}). Each syntax
+definition can be associated with attributes in square brackets; these
+attributes encode additional syntactic and semantic information. For example,
+\kcode{[left]} denotes left-associativity, while \kcode{[strict]} means that the
+production has a strict evaluation order: \kcode{E1 + E2} is evaluated by first
+evaluating \kcode{E1} and \kcode{E2}, and only then evaluating the addition
+operation. \kcode{if (B) S1 else S2} has attribute \kcode{[strict(1)]}, so only
+the condition \kcode{B} is evaluated before the top-level term. As you can see, strict attribute uses a 1-based indexing approach.
+
+\subsection{\IMP Semantics Definition}
+
+
+The module \kcode{IMP} defines the configurations and formal semantics
+of \IMP.
+
+\subsubsection{Configurations}
+
+A configuration is a snapshot of a complete state of a machine that runs \IMP,
+including the program being executed and any additional information required. We
+organize this information into XML-like cells, which can be nested. An \IMP
+configuration has two important cells: the \cell{k} cell contains the current
+computation, and the \cell{state} cell contains a mapping from \IMP variables to
+their values.\footnote{For clarity, we nest both of these inside a \cell{T} cell
+  explicitly; this top-level cell is usually inserted implicitly by the
+compiler.} Complex languages have many more cells than this; for example, \K
+configurations for C \cite{ECR12} have more than 120 cells.
+
+\subsubsection{Rewrite Rules}
+
+\K uses rewrite rules to define the formal operational semantics of \IMP; in
+\Cref{fig:k-imp-defintion}, rules are declared by the keyword \code{rule}. The most basic
+\K rules have the form \kcode{LHS => RHS}, meaning that for any term matching
+the \K pattern \kcode{LHS}, we can rewrite it to \kcode{RHS}.
+
+For example, the semantics of the while loop in \IMP is defined by rewriting:
+\begin{lstlisting}[language=K,numbers=none,frame=none,basicstyle=\footnotesize]
+while B { S } => if B { S while B { S } } else { }
+\end{lstlisting}
+That is, the rewrite rule unfolds a single iteration of the loop.
+
+
+\subsubsection{The \K Frontend}
+
+As well as matching and rewriting a single term in the current computation
+(i.e.\ the \cell{k} cell), \K supports more advanced rules that locally rewrite
+the configuration. For example, consider the rule for variable lookup in an \IMP
+program (where \kcode{X |-> I} means ``\kcode{X} maps to \kcode{I}'' in the
+\cell{state} cell):
+\begin{lstlisting}[language=K,numbers=none,frame=none,basicstyle=\footnotesize]
+<k>     X:Id => I ...</k>
+<state> X |-> I   ...</state>
+\end{lstlisting}
+
+Here, the rewrite arrow occurs \emph{inside} the \cell{k} cell. The \K compiler
+frontend performs a series of de-sugaring transformations to lift this rule into
+a more consistent (but less convenient to read and write) top-level rewrite. The
+ellipses at the end of cell patterns are replaced by explicit patterns, and the
+top-level \cell{T} cell is made explicit. Additionally, the entire configuration
+is repeated:
+\begin{lstlisting}[language=K,numbers=none,frame=none,basicstyle=\footnotesize]
+<T>                                        
+  <k> X:Id ~> REST-K </k>
+  <state> X |-> I REST-STATE </state>
+</T>                                       
+                    =>
+<T>                                        
+  <k> I ~> REST-K </k>
+  <state> X |-> I REST-STATE </state>
+</T>                                       
+\end{lstlisting}
+
+These transformations make it convenient to write \K code, while also inducing a
+conceptually simple internal structure for \K definitions. Internally to \K,
+configuration cells are themselves just terms in an extended language syntax.
+This means that a top-level configuration rewriting rule as above is simply a
+single large pattern-matching and rewriting problem; it is therefore intuitive
+why pattern matching must be made as efficient as possible in a \KL interpreter.
+Further discussion of the user-level \K language is out of the scope of this
+paper, which is concerned only with the internal details of how a \K
+pattern-matching problem should be compiled and the efficiency of our approach in real-world applications.  The readers interested in learning \K are encouraged to start with the \href{https://kframework.org}{\K Tutorial}.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{\KL Backend: A High-Level Overview} \label{sec:overview}
+In this section, we give a high-level overview of \KL. We will detail its various subsystems and the ways in which they interact to create the semantic-based compiler that is \KL.
+
+\KL does not operate directly on K definitions. Rather, it operates on KORE~\cite{kore-github}, a simplified internal representation of \K. This KORE definition is produced by the \K frontend and can be compiled by the \KL backend into a native interpreter binary that efficiently implements the rewrite system specified by that definition. Alternatively, the KORE definition can be compiled into a dynamic or static library that provides similar rewriting functionalities. 
+
+\KL comprises the following subsystems and data structures:
+
+\begin{itemize}
+    \item \textbf{KORE AST data structures:} Data structures that represent the KORE AST in memory.
+    \item \textbf{Decision tree data structures and generator:} Data structures representing decision trees used for pattern matching purposes and a generator that converts KORE ASTs to decision trees.
+    \item \textbf{Runtime terms:} Data structures representing KORE terms during execution.
+    \item \textbf{Code generator:} The main compiler that translates decision trees into an interpreter that can rewrite KORE terms according to the given KORE definition.
+    \item \textbf{Runtime library:} Libraries and hooks implemented in C/C++ and LLVM IR that are linked with the generated interpreter to provide perfor-mance-focused runtime utilities.
+    \item \textbf{Memory management and garbage collector:} Memory allocator and garbage collector for runtime terms.
+\end{itemize}
+
+In the following subsections, we give more details on each of the above items.
+
+
+\subsection{KORE ASTs}
+The input to the \KL backend is a KORE definition~\cite{kore-github}, which is an internal representation of a \K semantic definition, produced by the \K frontend. A KORE definition (similarly to a \K definition) contains sort and symbol declarations, as well as various axioms on terms constructed by said symbols, including axioms that specify rewriting a term that matches a specific pattern to another term. For a formal definition of the syntax of a KORE definition, see~\cite{kore-syntax}.
+
+The KORE AST is represented internally in the backend by a collection of C++ data structures that include classes for KORE definitions, axioms, patterns, sorts, symbols, etc.
+
+The KORE data structures guide the compilation of the KORE definition into a decision tree that implements pattern matching to select which rewrite rule to apply to a given term. They also guide the code generation that implements the said rewrites, i.e. the generation of code that rewrites a given term to a new one according to a rewrite rule that matched. As such, they provide the following important functionalities:
+\begin{itemize}
+    \item The data structures form an abstract syntax tree (AST) that can be traversed for the purposes of decision tree and code generation. For example, a KORE definition data structure points to the various sort and symbol declarations it contains, as well as the various axioms that represent top-level and function rewrite rules. A KORE pattern data structure points to the KORE symbol data structure for the constructor of the pattern, as well as to other KORE pattern data structures for the arguments of the constructor symbol.
+    \item Parsing from textual KORE and outputting as textual KORE.
+    \item Serialization and deserialization into two different binary formats, one that focuses on optimizing storage size for large KORE terms, and another that focuses on optimizing serialization/deserialization times.
+    \item A mapping between KORE symbols and arithmetic tags, that will be useful for translating said symbols into the more efficient runtime term representation.
+    \item Various utilities such as hashing, applying a substitution into a term, expanding macros, etc.
+\end{itemize}
+
+The \KL backend compiler walks a given KORE definition and generates a decision tree that can be used to pattern-match any given term of said definition and choose a corresponding rewrite rule from that definition to apply. The compiler does that for the top-level KORE definition as well as for all functions in that definition. Note that both K top-level rules and function rules correspond to KORE axioms.
+
+
+\subsection{Decision Trees and Pattern Matching}
+The compiler of the \KL backend needs to generate code that, for any given term that is well-formed according to a KORE definition, selects a rewrite rule from said definition that matches the term. Rewrite rules comprise a pattern (also known as the left-hand side of the rule) and a rewrite term (also known as the right-hand side of the rule). The pattern is a KORE term that contains variables and can be matched against a given concrete KORE term. The rewrite term is also a KORE term that contains the same variables found in the pattern. In the process of matching, the variables of the pattern are given concrete values according to the sub-terms of the concrete term that they matched. This mapping from pattern variables to concrete terms is called a substitution. After the pattern has been matched and we have a substitution, we can rewrite the given concrete term into the rewrite term of the matched rule by applying the substitution to the rewrite terms to get a new concrete term.
+
+The pattern matching code generated by the compiler needs to handle large KORE definitions with potentially thousands of rewrite rules to select from. The code should do that in the most efficient way possible in terms of both code size and number of branches. Pattern matching is a common and well-studied problem for compilers of functional languages. In the \KL backend, we employ a modified version of an existing published algorithm for code generation of efficient pattern matching, described in~\cite{Maranget2008}. The algorithm represents the patterns of the left-hand side of rewrite rules as matrices, and processes these matrices into a decision tree data structure: Starting from the root of the tree, each node is a check on a specific position of the given term and the children of the node represent how to continue checking given the result of the parent’s check. A leaf node corresponds to a specific rewrite rule that matches when the leaf node is reached through a series of checks on the given term. The algorithm is designed to be customized with various heuristics in order to lead to generation of decision trees that minimize the number of checks needed to match a given term.
+
+As mentioned, the \KL backend uses a modified version of the algorithm. There are two main modifications in our pattern matching algorithm:
+\begin{itemize}
+    \item New heuristics that we have found lead to better decision trees for the kinds of patterns found in KORE definitions.
+    \item New types of internal decision tree nodes to represent functionality specifically found in KORE term patterns that are not covered by the patterns considered by the original algorithm, e.g. patterns that match an element of a set, or the i-th element of a list.
+\end{itemize}
+Our modifications to the pattern matching algorithm are documented in detail in \Cref{sec:k-llvm,sec:decomp,sec:compile,sec:heuristics}.
+
+
+
+\subsection{Runtime Term Representation}
+The KORE AST terms contain a lot of information that is not needed during execution and are therefore not ideal to use at runtime. Rather, the \KL backend uses \block as the common data structure to represent KORE symbol terms at runtime. The \block datatype is defined as:
+
+\begin{lstlisting}[language=C++, numbers=none,frame=none]
+using block = struct block {
+  blockheader h;
+  uint64_t *children[];
+};
+\end{lstlisting}
+
+The \children field contains data that points to children of this block, i.e. the arguments of the KORE symbol that corresponds to this block. These can be other block pointers or any of the native runtime types described below.
+
+
+The \blockheader is a struct containing only one 64-bit value that we use to encode all metadata related to the block. That includes its size, layout, and tag:
+\begin{itemize}
+    \item The size metadata contains the size of the block, in words.
+    \item The layout metadata is an index to the layout table (generated by the code generator). The layout table contains information about the layout of the block, such as the number of children for this block, the offset in bytes from the start of the block where we can find the data related to each child, as well as whether each child is another block or one of the native runtime types.
+    \item The tag metadata is a unique identifier for the symbol that is used instead of the symbol name during runtime, because comparing integers is more efficient than comparing strings.
+    \item There are also a number of bits in the blockheader that provide metadata related to the memory management system and the garbage collector.
+\end{itemize}
+
+The \KL backend implements some KORE sorts as native types rather than regular blocks in order to be able to hook builtin functionality that should be available for these sorts into native C++ libraries that give significant performance benefits. The following sorts have their own implementation on the backend: machine integers, arbitrary precision integers, floating point numbers, strings and bytestrings, and collection sorts (maps, sets, lists, and rangemaps).
+
+
+\subsection{Code Generation and Rewriting} \label{sec:codegen-overview}
+The code generator is responsible for generating code that implements the pattern matching as directed by the decision tree, as well as the rewriting that should occur when a leaf node is reached in the tree, which corresponds to a rewrite rule. The main loop of execution is as follows:
+\begin{enumerate}
+    \item Given a KORE term, walk the decision tree to reach a leaf node.
+    \item Apply the rewrite rule that corresponds to the reached node to the KORE term.
+    \item Repeat for the new KORE term we get after applying the rewrite rule.
+\end{enumerate}
+The execution terminates if, in step 1, we fail to find a match, i.e. we end up in a special node of the decision tree that represents a pattern matching failure.
+
+Before we start the execution loop, we need code that converts the input KORE term, which was parsed as a KORE data structure, into a Runtime Term. The code generator generates a variety of utility functions and tables to that end, including:
+\begin{itemize}
+    \item Functions that convert between tags and symbol names. Tags are used by runtime terms because they can be compared more efficiently than strings.
+    \item A table that describes the layout of a runtime term that corresponds to a certain tag.
+    \item A table that provides the sort of the for a runtime term that corresponds to a certain tag.
+    \item A table that provides the argument sorts (if any) for a runtime term that corresponds to a certain tag.
+    \item A visitor function that recursively calls a given lambda on the children of a given runtime term.
+\end{itemize}
+
+Using these utilities, the backend runtime provides a function that constructs the initial runtime term from a given KORE pattern data structure. These utilities are also useful for various other runtime functions, such as serializers of runtime terms and conversion from runtime terms back to KORE AST data structures.
+
+Beyond emitting utility code for converting and handling runtime terms, the code generator is responsible for generating code that performs steps 1 and 2 of the main execution loop, as described above. Specifically, for step 1, the code generator implements the decision tree as a nested switch statement that switches on the tags of the constructor symbol as well as the various tags of the symbols found in argument positions in the runtime term. The order of nesting is dictated by the decision tree and is optimized for minimizing the number of checks, as discussed in the decision tree section.
+
+The case blocks for the final switch correspond to leaf nodes of the decision tree and thus, the code generator needs to fill them with code that implements the rewrite of the rule for said leaf node. For rules with side conditions, the side condition function also needs to be evaluated before we can confirm that the rule matched. The code generator produces code that creates a new runtime term as dictated by the right-hand side of the matching rule, applying all the necessary substitutions using subterms of the original runtime term that matched. This is how step 2 of the main execution loop is code-generated by the compiler.
+
+Note that each function (including functions for side conditions) needs to be processed in the same way by the code generator. In other words, for each function, we need to create a decision tree according to the rewrite rules of the function and code-generate a similar execution loop as the top-level execution loop that rewrites top-level terms.
+
+
+\subsection{Runtime Library}
+The \KL backend comes with a runtime library written in C/C++ (and some parts in LLVM IR) that contains initialization and termination code, utilities that operate on runtime terms, and hooked implementations for \K functions that provide standard APIs for KORE sorts with native implementations. All this functionality is linked with the generated code to create the interpreter binary (or the static/dynamic library) for the input KORE definition.
+
+The runtime library contains the main function that parses the various input flags and arguments to the interpreter, parses the initial KORE term into a runtime term, initiates the execution rewrite loop, and finally outputs the final runtime term as a KORE term.
+
+It also contains utilities that operate on runtime terms, such as traversing the children of a term, serializing/deserializing a KORE term, pretty-printing a KORE term, etc.
+
+Finally, the runtime library contains the implementation for various functions that come as builtin support with specific KORE sorts, e.g. appending elements to a list, checking membership in a set, inserting a key/value pair in a map, etc. All of these operations are implemented natively, in C/C++, using optimized libraries and algorithms. The native implementations are hooked to the corresponding KORE function symbols: The code generator knows to call the native function for such a KORE symbol application instead of code generating of the function body from rewrite rules which happens normally for function symbols.
+
+Memory management and garbage collection are also part of the runtime library. However, they are treated as a separate subsystem due to their complexity.
+
+
+\subsection{Memory Management and Garbage Collection}
+During execution, there is a need to allocate and keep in memory various runtime terms. In addition, after every rewrite step it is likely that some subterms of the old runtime term are not needed for the new term (due to rewrites), and thus it would be desirable to deallocate such terms to reduce memory usage. Both the allocation of new terms and the garbage collection of useless terms are handled by the memory management subsystem of the \KL backend’s runtime.
+
+The allocator of the memory management subsystem offers convenient allocation APIs for runtime terms that correspond to KORE symbols, as well as to builtin types such as integers, floating-point numbers, maps, lists, sets, etc. The allocator is a bump allocator: it keeps a pointer to the next available memory location and every time memory of certain size is requested, the current pointer is returned and then bumped by the requested size to get the next available location. Bump allocators are extremely fast but provide limited support for manual deallocation. For this reason, all runtime terms that are allocated through the allocator APIs are tracked and automatically deallocated at a later time by the backend's garbage collector.
+
+It is important to note that subterms that correspond to constant values (known at compile time) are not allocated by the memory management subsystem’s allocators. They are rather being code-generated as LLVM IR constant structs that follow the same layout as normal runtime terms.
+
+The memory management subsystem utilizes 3 different address spaces for memory allocation in order to enable a generational garbage collection strategy~\cite{Ungar1984}. These address spaces are called arenas, and they are: the young generation arena, the old generation arena, and the always collected arena. The main difference between these arenas is the frequency of garbage collection cycles:
+\begin{itemize}
+    \item \textbf{Young generation arena:} Collected at every garbage collection cycle.
+    \item \textbf{Old generation arena:} Collected every 50 garbage collection cycles (the number is configurable, and it is possible to implement more complex logic for deciding the frequency of collection for this arena).
+    \item \textbf{Always collected arena:} Collected at every garbage collection cycle and everything contained in the arena is collected as garbage.
+\end{itemize}
+A garbage collection cycle is initiated between rewrites (between steps 2 and 3 of the execution loop shown in \Cref{sec:codegen-overview}). It is only initiated when the arena in question is approaching full capacity of allocated memory.
+
+Unless explicitly asked, the allocator APIs allocate memory in the young generation arena. Terms that survive a configurable number of garbage collections (currently, this number is just 1 collection) are transferred to the old generation arena, where they will be collected more infrequently. This is done to improve the performance of the garbage collector: Terms that survive a collection cycle are more likely to remain relevant for many rewrite cycles, and it is beneficial if they are not scanned by the garbage collector at every collection cycle. Finally, the always collected arena is intended for terms that will not be used after the next rewrite.
+
+The garbage collector uses a copying strategy following Cheney's algorithm for list compaction~\cite{Cheney1970}. The arena being collected is divided into 2 halves, and at every point in time only one half is used for allocations. When garbage collection begins, the collector scans the active half and copies to the inactive half terms that are either pointed by some global term that is always live (such as the term corresponding to the top cell of a KORE configuration), or by some already copied term. After the whole active half has been scanned, only the terms that are reachable by a known live term have been copied. The rest of the terms are garbage to be collected. Collecting them is as simple as reversing the roles of active and inactive halves of the arena, and continuing allocations in the new active half.
+
+\section{\KL Backend: Pattern Matching} \label{sec:k-llvm}
+In this section, we extend the decision tree-based pattern matching compilation
+algorithm presented by \citet{Maranget2008} with three substantial features.
+
+First, we define a restricted subset of associative-commutative (AC) pattern
+matching \cite{Hvllot1979} for the collection data types natively supported by
+\K: \emph{lists}, \emph{maps} and \emph{sets}. Maps and sets entail AC pattern
+matching, while lists are only associative (A). Secondly, we describe the
+implementation of pattern matching for conditional rules (those that have
+boolean side conditions). This extension permits a simple implementation of
+non-linear pattern matching.
+
+Once a decision tree has been generated for a \K rule, \KL then compiles that
+tree to native code via LLVM intermediate code \cite{Lattner2004}. The result of
+matching a term against a pattern is a set of substitutions mapping variables to
+subterms.
+\KL uses a compact runtime representation for \K terms that allows rewrite
+rules to be applied efficiently. Additionally, it backs lists, maps, and sets by
+immutable native data structures \cite{Bolivar2017}; doing so is substantially
+more efficient than implementing them directly as terms to be rewritten.
+
+We additionally demonstrate a generalization of the \texttt{qbaL} heuristic
+\cite{Maranget2008,Scott2000} that strikes a balance between compilation time
+and decision tree quality for the \KL-specific algorithm.
+
+
+The remainder of this section describes the pattern-matching compilation and the
+\KL interpreter runtime in more detail.
+
+\subsection{Pattern Matching}
+
+In this subsection, we introduce the basic concepts in the \KL pattern matching
+algorithm. Following the terminology of \citet{Maranget2008}, we define sorts,
+constructors, patterns, occurrences, and pattern matrices as they pertain to the
+\K-specific context of this paper.
+
+\paragraph{Terms:}
+
+\K terms are abstract syntax trees of variable arity with a constructor symbol
+at each node.
+
+\paragraph{Sorts:}
+
+In the \K frontend's parsing phase, terms are sorted according to the
+productions in a definition's grammar. \KL receives well-sorted terms from the
+frontend, and must only distinguish between \K constructors and the three
+collection sorts (sets, maps, and lists). In all other respects the
+pattern-matching algorithm we present is unsorted.
+
+\paragraph{Constructors:}
+
+We categorize \K constructors into \emph{regular} and \emph{collection}
+constructors. Regular constructors correspond to user-defined programming
+language constructs, and resemble ML terms. Additionally, \K defines built-in
+regular sorts with an infinite family of zero-arity constructors (for example,
+the integer literal \mintinline{c}{0} is a constructor for the
+\mintinline{c}{Int} sort).
+
+Collection constructors represent partial collection structure against which we
+can pattern-match. The constructor $ \listcst(l) $ matches lists of
+length $ l $, while $ \emptymap $ matches an empty map or set. Maps and sets also
+permit two additional constructors: $ \mapkey(k) $ matches a map or set
+containing precisely the key $ k $, and $ \mapchoice $ matches an arbitrary
+element of a map or set. The Set sort can be understood as a degenerate Map,
+where every key maps to the unit value; they permit the same constructors and,
+unless specified, are treated identically throughout.
+
+
+\paragraph{Patterns:} \label{sec:pattern-grammar}
+
+Patterns are defined inductively over a set of unsorted variables, regular
+constructors, and collections. We write $p$, $q$ for patterns, $ c $ for regular
+constructors, and $ X $, $ Y $ for variables. The grammar for patterns over
+\emph{regular} sorts is as follows:
+\begin{align*}
+  p \Coloneqq & \: X                        && \text{variable} \\
+    \mid      & \: c(p_1, \dots, p_n)       && \text{regular constructor} \\
+    \mid      & \: p \; \mathtt{as} \; X    && \text{as-binding} \\
+    \mid      & \: p \lor q                 && \text{disjunction}
+\end{align*}
+
+
+We extend this grammar of patterns to collection sorts as follows:
+\begin{align*}
+  p \Coloneqq & \: p_1 ; \dots ; p_n                            && \text{list pattern ($n \geq 0$)} \\
+    \mid      & \: p_1 ; \dots ; p_n ; L ; q_1 ; \dots ; q_m
+              && \text{binding list pattern ($m + n \geq 1$)} \\
+    \mid      & \: p_1 \; \dots \; p_n                          && \text{set pattern ($n \geq 0$)} \\
+    \mid      & \: p_1 \; \dots \; p_n \; S                   
+              && \text{binding set pattern ($n \geq 1$)} \\
+    \mid      & \: p_1 \mapsto q_1 \; \dots \; p_n \mapsto q_n  && \text{map pattern ($n \geq 0$)} \\
+    \mid      & \: p_1 \mapsto q_1 \; \dots \; p_n \mapsto q_n \; M
+              && \text{binding map pattern ($n \geq 1$)}
+\end{align*}
+
+For each collection sort, we define a ``binding'' and ``non-binding'' pattern
+production. The binding productions contain variables $ L $, $ S $ and $ M $
+(for lists, sets and maps, respectively), which represent the \emph{remainder}
+of the collection after the explicit pattern components have matched. For
+example, the pattern $ p ; L ; q $ matches a list whose prefix matches $ p $ and
+suffix matches $ q $, binding the variable $ L $ to the ``middle'' of the list
+after removing those first and last elements. Sets and maps are commutative, and
+so their patterns are not explicitly ordered.
+
+This grammar does not express full AC matching, as binding patterns must contain
+exactly one collection variable. This restriction allows our matching algorithm
+to be more efficient than a classical rewriting engine with full AC matching
+(such as Maude \cite{Clavel2007}). In practice, the
+semantics of many real-world languages can be defined easily without full AC
+matching, and so this restriction is not critical. Additionally, we restrict
+binding patterns to contain at least one pattern other than the collection
+variable; if this restriction was relaxed, such patterns would simply be
+sort-categorized variable patterns.
+
+\paragraph{Conditional patterns:}
+
+Let $p$ be a pattern and $b$ be a boolean expression whose variables all occur
+in $p$. We write conditional patterns as $p \land b$. From now on, we assume
+that all patterns $p$ are linear; a nonlinear pattern can be easily desugared to
+a linear conditional pattern. For example, $c(x,x,y,y)$ desugars to
+$c(x,x',y,y') \land x=x' \land y=y'$. We therefore suffer no loss of generality.
+
+\paragraph{Actions:}
+
+We identify a set of actions, each representing the result of a successful
+pattern match. These actions are simply distinct integers identifying a
+particular \K rewrite rule to be applied.
+
+\paragraph{Occurrences:}
+
+Occurrences represent either subterms of a run-time term being matched, or
+another run-time value relevant to the evaluation of a pattern match; we define
+them as finite sequences of tokens, where each token is:
+\begin{align*}
+  ot \Coloneqq n \in \mathbb{N} \mid \siz \mid \key \mid \val \mid \rem \mid \iter \mid \fsh(\act) \mid \pat(p)
+\end{align*}
+
+The precise semantics of each of these tokens with respect to a particular term
+is explained later in this section, when the compilation of pattern matching
+over collections is defined. For now, a rough intuition is sufficient: an
+integer $ n $ is the $ n $th
+child of a regular or list constructor,
+$\siz$ represents the size of a collection at run-time; $ \key $ and $ \val $
+are the key and value stored in maps (c.f.\ sets), and $ \rem $ is the remainder
+of a collection after a matched element is removed. $ \iter $ is a run-time
+iterator into a collection; $ \fsh(\act) $ is the result of a rule's side
+condition, and $ \pat(p) $ tracks the original element of a map or set to which
+another token refers.
+
+\paragraph{Pattern matrices:}
+
+We maintain pattern-matching state in a $ m \times n $ matrix of patterns. We
+additionally track the occurrence against which each pattern matrix entry is
+currently being matched, the (partial) matching solutions, the corresponding
+actions, side conditions (if any), and auxiliary information for collection
+sorts such as lists, maps, and sets. The pattern matrix $ \PP $ has the
+following basic form:
+$$
+\PP =
+\begin{pmatrix}
+\PP[1,1] & \PP[1,2] & \cdots & \PP[1,n]  \\
+\PP[2,1] & \PP[2,2] & \cdots & \PP[2,n]  \\
+         &          & \vdots \\
+\PP[m,1] & \PP[m,2] & \cdots & \PP[m,n] 
+\end{pmatrix}
+\ \ 
+\begin{matrix}
+\leftarrow \pprow{1} \\
+\leftarrow \pprow{2} \\
+\vdots \\
+\leftarrow \pprow{m}
+\end{matrix}
+$$
+\vspace{-0.5\baselineskip}
+$$
+\begin{matrix}
+\uparrow & \uparrow & \cdots & \uparrow \\
+\ppcol{1}\ & \ppcol{2}\ & \cdots & \ppcol{n}
+\end{matrix}
+\kern7ex
+$$
+Individual patterns in $\PP$ are written $\pp{i}{j}$. We write $\pprow{i}$ to
+denote the $i$th row vector and $\ppcol{j}$ the $j$th column vector in $\PP$.
+Along with the current matrix of patterns, we maintain a tuple of additional
+information $ \pr{\PP, \succeq, [o_j], [s_j], \sol, \actb, \condb, \lslen}$, where
+\begin{enumerate}
+
+  \item $\succeq$ is a partial ordering on the rows of $\PP$, corresponding to
+    the priorities of the rewrite rules. If $i_1 \succeq i_2$, row $i_1$ has
+    higher priority than row $i_2$.  If both rows can be matched, row $i_1$ will
+    be applied because it has higher priority. 
+
+    Typically, in functional languages such as ML, exactly one rule is matched,
+    and textual priority is used to enforce the order in which matching is
+    attempted. However, in \K, it is often the case that multiple rules can
+    match a term with equal priority; it is possible to extend our algorithm to
+    generate the set of all possible matches rather than choosing exactly one.
+
+  \item $ \{ o_j \}^n_{j=1} $ and $ \{ s_j \}^n_{j=1} $ are lists of $n$
+    occurrences and sorts, respectively, corresponding to the $n$ columns of
+    $\PP$.
+
+  \item For the $i$-th row of $\PP$ ($1 \le i \le m$):
+  \begin{enumerate}
+    \item $\sol[i]$ is a (partial) solution, which is a mapping from
+      variables to occurrences.
+
+    \item $\actb[i] \in \Act$ is an action, which is the action to take if row
+      $i$ is matched.
+
+    \item $\condb[i]$ is a boolean side condition.
+
+    \item $\lslen[i]$ is a list of tuples, each of the form $ \pr{o, s, n_1,
+      n_2} $ with $ n_1, n_2 \in \NN $ and $ n_1 \leq n_2 $. These represent the
+      sections of a list that are bound by a particular row.
+  \end{enumerate}
+\end{enumerate}
+
+\paragraph{Column signatures:}
+
+We define the \emph{signature} of a column $ \ppcol{j} $ as the set of
+constructors that must be considered when pattern matching the term
+corresponding to $ o_j $. First, we define the function $ \patsig $ over
+regular patterns:
+\begin{align*}
+  \patsig(X) & = \emptyset \\
+  \patsig(c(p_1, \dots, p_a)) & = \{ c \} \\
+  \patsig(p \; \mathtt{as} \; X) & = \patsig(p)
+\end{align*}
+
+This definition is extended for collection patterns:
+\begin{align*}
+  \patsig(p_1 ; \dots ; p_n) & = \{\listcst(0), \dots, \listcst(n)\} \\
+  \patsig(p_1 ; \dots ; p_n; L; q_1 \dots q_m) & = \{\listcst(0), \dots, \listcst(m+n)\} \\
+  \patsig(p_1 \mapsto q_1 \dots p_n \mapsto q_n) & = \{\emptymap\} && \text{ if } n = 0 \\
+  \patsig(p_1 \mapsto q_1 \dots p_n \mapsto q_n) & = \{\mapkey(p_1), \dots, \mapkey(p_n)\} && \text{ if } n > 0 \\
+  \patsig(p_1 \mapsto q_1 \dots p_n \mapsto q_n \; M) & = \{\mapkey(p_1), \dots, \mapkey(p_n)\} \\
+  \patsig(p_1 \; \dots \; p_n) & = \{\emptymap\} && \text{ if } n = 0 \\
+  \patsig(p_1 \; \dots \; p_n) & = \{\mapkey(p_1), \dots, \mapkey(p_n)\} && \text{ if } n > 0 \\
+  \patsig(p_1 \; \dots \; p_n \; S) & = \{\mapkey(p_1), \dots, \mapkey(p_n)\}
+\end{align*}
+
+We can then define the pattern signature for a column $ j $ with sort $ s $ in
+terms of the signature of the individual patterns in that column:
+\begin{align*}
+  \patsig'(s, j) & = \bigcup_{1 \leq i \leq m} \patsig(\PP[i, j]) \\
+  \patsig(s, j)  & = \{ \emptymap \}
+                 && \text{if $ s $ is a map or set sort, and $ \emptymap \in \patsig'(s, j)$} \\
+  \patsig(s, j)  & = \{ \bestkey(j) \}
+                 && \text{if $ s $ is a map or set sort, and $ \emptymap \notin \patsig'(s, j)$} \\
+  \patsig(s, j)  & = \patsig'(s, j)
+                 && \text{otherwise}
+\end{align*}
+
+The function $ \bestkey(j) $ is a customization point for heuristics; it returns
+either $ \mapchoice $ or some $ \mapkey(k) \in \patsig(s, j) $, specifying how
+the map should be decomposed. A precise definition will be given later.
+
+\paragraph{Canonical variables:}
+
+Typically, we identify pattern variables as names. However, in some contexts, we
+need to refer to the actual occurrences bound by those variables. For a given
+row of the clause matrix, the substitution $ \sol[i] $ maps variables to
+occurrences. To \emph{canonicalize} a pattern $ p $, we replace all named
+variables with their bindings in $ \sol[i] $. A pattern is \emph{bound} if its
+named variables have a binding in $ \sol[i] $.
+
+We additionally adopt the standard definition of unification for patterns with
+named variables; two patterns \emph{unify} if there exists a binding for all
+their named variables such that substituting that binding into both patterns
+produces the same pattern.
+
+\paragraph{Initialization:} \label{sec:matrix-init}
+
+Given a set of rewrite rules, we initialize $ \PP $ to a one-column,
+$m$-row matrix:
+\begin{align*}
+  \PP =
+  \begin{pmatrix}
+    LHS[1] \\
+    \vdots \\
+    LHS[m]
+  \end{pmatrix}
+\end{align*}
+where each pattern $ LHS[i] $ is the left-hand side of the $i$-th
+rewrite rule. The rows of $ \PP $ are sorted according to the partial ordering $
+\succeq $ induced by the original \K definition. For this single column matrix,
+$ o_1 = \epsilon $ and $ s_1 = s $, where $ s $ is the sort of the term being
+matched.
+
+The lists $ \actb $ and $ \condb $ are initialized straightforwardly from the
+right-hand side and side condition of the underlying \K rules. Then, $ \sol[i] $
+and $ \lslen[i] $ are initialized to the empty set and empty list respectively.
+
+
+\section{Pattern Decomposition} \label{sec:decomp}
+
+To compile a pattern matrix into efficient code, we decompose the patterns in
+each row into smaller components, while keeping track of the variable bindings
+produced by doing so, and the subterm currently being scrutinized by each
+pattern. Following \citet{Maranget2008}, we do so by defining two operations on
+pattern matrices: \emph{specialization} and \emph{default decomposition}.
+
+Specialization transforms a pattern matrix under the assumption that the subterm
+being scrutinized has a particular head constructor. We write $ \cS(\PP, c, j) $
+for the matrix obtained by discarding any rows of $ \PP $ that are known not to
+have a pattern with constructor $ c $ in column $ j $, and reducing rows that do
+to their sub-patterns. Conversely, the default decomposition (written $ \cD(\PP,
+j) $) transforms $ \PP $ under the assumption that the current subterm will not
+match any constructor patterns in column $ j $ (i.e.\ its head constructor does
+not match any of the constructors in the column). Formal definitions of these
+operations are given later in this section.
+
+This subsection is divided into several parts for clarity. First, in
+\Cref{sec:decomp:reg}, we define our instantiation of pattern matrix
+decomposition for \emph{regular} constructors only, largely following the
+terminology of \citet{Maranget2008}. Then, in
+\Cref{sec:decomp:list,sec:decomp:map,sec:decomp:set}, we extend these
+definitions substantially to account for collection sorts.
+
+Disjunction patterns ($p \lor q$) are expanded into a row with the same action
+and priority group for each disjoint pattern in the disjunction. By doing so
+pairwise across all components of the disjunction, we eliminate these
+patterns with no loss of generality and do not consider them further in this
+section.
+
+\subsection{Regular Patterns} \label{sec:decomp:reg}
+
+
+\begin{definition}{Specialization on regular patterns}.
+
+Our specialization procedure for regular patterns follows \citet{Maranget2008}:
+at a high level, the specialized matrix $ \cS(\PP, c, j) $ is obtained by either
+expanding or removing rows of $ \PP $ based on the head constructor of $ \PP[i,
+j] $ and the constructor $ c $. If the head constructor is $ c $, then $ \PP[i,
+j] $ is replaced by its arguments (expanding the row); if it is not $ c $, then
+the row is removed.
+
+Additionally, we extend this procedure with an accumulated variable binding
+environment. If $ \PP[i, j] $ is a variable $ x $, then we update the binding
+state:
+\begin{align*}
+  \sol[i]   & := \sol[i] \cup \{x \mapsto (o_j, s_j) \}
+    && \text{(bind $x$ to the occurrence being matched)}
+\end{align*}
+
+If $ \PP[i, j] $ is $ p \; \mathtt{as} \; X $, then we proceed by specializing on $
+p $, and similarly binding $ X $ to the current occurrence and sort.
+
+
+
+
+
+
+
+
+After applying this process to each row, the pattern matrix has $n-1+a$ columns;
+it may also have fewer rows if any did not match the constructor $ c $. To
+account for the new structure, we must also update the lists $ [o_j] $ and $
+[s_j] $ so that they remain consistent. The following elementwise updates to the
+lists are performed, replacing the elements $ o_j $ and $ s_j $ with vectors:
+\begin{align*}
+  o_j & \to (1 \cdot o_j, \dots, a \cdot o_j) \\
+  s_j & \to (s^c_1, \dots, s^c_a)
+\end{align*}
+where each $ s^c_i $ is the sort of the $ i^{\text{th}} $ argument of
+constructor $ c $.
+
+\end{definition}
+
+
+\begin{definition}{Default decomposition on regular patterns.}
+
+The default decomposition is dual to the specialization matrix; rather than
+assuming that the term $ o_j $ has precisely constructor $ c $, we assume that
+it has a constructor \emph{not contained} in $ \patsig(s_j, j) $. This
+means that any constructor patterns in column $ j $ will not match the current
+term, and that any variable patterns will match the term without needing to
+match any further subterms. We define row-wise rewrites similar to the
+specialization matrix, including variable bindings.
+
+
+
+
+
+
+The resulting pattern matrix will have $ n - 1 $ columns, and may also have
+fewer rows. We update $ [o_j] $ and $ [s_j] $ to account for the change in
+structure by simply deleting the elements $ o_j $ and $ s_j $ from their
+respective vectors.
+
+\end{definition}
+
+
+
+\subsection{List Patterns} \label{sec:decomp:list}
+
+
+\begin{definition}{Specialization on list patterns.}
+
+List collections permit one constructor: $\listcst(l)$, representing the family
+of all lists of length $ l $. Specializing the pattern matrix against this
+constructor amounts to ensuring that the pattern $ \PP[i, j] $ being scrutinized
+can match a list with $ l $ elements, and that if the pattern binds a
+list-sorted variable $ L $, the correct middle slice of the object term is
+bound. We define $ \PP[i, \front] $ to be the sequence $ \PP[i, 1], \dots,
+\PP[i, j-1] $, and $ \PP[i, \tail] $ to be (analogously) $ \PP[i, j + 1], \dots,
+\PP[i, n] $, and proceed:
+\begin{enumerate}
+
+  \item If $ \PP[i, j] $ is the non-binding list pattern $ p_1; \dots; p_l $,
+    then rewrite the current row to:
+    \begin{align*}
+      (\PP[i, \front], p_1, \dots, p_l, \PP[i, \tail])
+    \end{align*}
+
+  \item If $ \PP[i, j] $ is the non-binding list pattern $ p_1; \dots; p_k $
+    where $ k \neq l $, then delete the current row (a list of exactly $ l $
+    elements cannot match a pattern with $ k $ elements).
+
+  \item If $ \PP[i, j] $ is $ p_1; \dots; p_h; L, q_1; \dots; q_t $, and $ l > h
+    + t $, then there are excess list elements to bind to the variable $ L $. We
+    therefore introduce new fresh variables $ y_1, \dots, y_{l-(h+t)} $ to bind
+    each of these elements, and rewrite the current row to:
+    \begin{align*}
+      (\PP[i, \front], p_1, \dots, p_h, y_1, \dots, y_{l-(h+t)}, q_1, \dots, q_t, \PP[i, \tail])
+    \end{align*}
+    We additionally update the state as follows:
+    \begin{align*}
+      \sol[i]   & := \sol[i] \cup \{ L \mapsto (l + 1 \cdot o_j, s_j) \} \\
+      \lslen[i] & := \lslen[i] :: (l + 1 \cdot o_j, s_j, h, t)
+    \end{align*}
+    where $ :: $ is list concatenation. The contents of the $ \lslen[i] $ list
+    are used later to ensure that the variable $ L $ binds the correct subterms.
+
+  \item If $ \PP[i, j] $ is $ p_1; \dots; p_h; L, q_1; \dots; q_t $, and $ l = h
+    + t $, then there are no excess list elements to be bound to $ L $, and so
+    we rewrite the current row to:
+    \begin{align*}
+      (\PP[i, \front], p_1, \dots, p_h, q_1, \dots, q_t, \PP[i, \tail])
+    \end{align*}
+    and perform the same state update as above:
+    \begin{align*}
+      \sol[i]   & := \sol[i] \cup \{ L \mapsto (l + 1 \cdot o_j, s_j) \} \\
+      \lslen[i] & := \lslen[i] :: (l + 1 \cdot o_j, s_j, h, t)
+    \end{align*}
+
+  \item Finally, if $ \PP[i, j] $ is $ p_1; \dots; p_h; L, q_1; \dots; q_t $,
+    and $ l < h + t $, then the pattern has too many elements to match the list
+    constructor being scrutinized. We therefore delete the current row.
+
+\end{enumerate}
+
+As for regular constructors, specializing on a list constructor entails updates
+to the occurrence and sort vectors $ [o_j] $ and $ [s_j] $. The individual
+elements $ o_j $ and $ s_j $ are replaced by vectors:
+\begin{align*}
+  o_j & \to (1 \cdot o_j, \dots, l \cdot o_j) \\
+  s_j & \to (s_e, \dots, s_e)
+\end{align*}
+where $ s_e $ is the element sort of $ s_j $.
+
+\end{definition}
+
+
+\begin{definition}{Default decomposition on list patterns.}
+
+For list constructors, the default decomposition can be defined conveniently in
+terms of specialization. Recall that the default decomposition transforms the
+pattern matrix under the assumption that \emph{none} of the patterns in the
+current column match the constructor currently being scrutinized. Let $ l_{head}
+$ and $ l_{tail} $ be the lengths of the longest list pattern head and tail in $
+\PP $. We know that the list being scrutinized must be longer than any pattern
+in the column being decomposed, and so specializing on $ \listcst(l_{head} +
+l_{tail}) $ guarantees that no elements in between can be referenced by any
+submatrix. This produces the default decomposition in terms of specialization.
+
+\end{definition}
+
+
+
+\subsection{Map Patterns} \label{sec:decomp:map}
+
+
+In order to maximize efficiency, \K does not implement fully general AC pattern matching for maps or sets.
+Instead, the grammar of map and set patterns (see \Cref{sec:pattern-grammar}) is restricted
+to two specific cases that can be compiled efficiently and suffice in practice.
+The first, when the key
+of the map element being matched is bound, is called a \emph{lookup}. The
+second, when the key is not bound, is called a \emph{choice}. Additionally,
+patterns may match the empty map or set.
+
+\begin{definition}{Specialization on map patterns.}
+
+To define specialization for maps and sets, we must therefore
+define it separately for each of their constructors. First, let us
+consider the empty map (i.e. the constructor $ \emptymap $), retaining the
+definitions used previously for $ \PP[i, \front] $ etc.:
+
+\begin{enumerate}
+
+  \item If $ \PP[i, j] $ is the map pattern with $ n = 0 $, then rewrite the
+    current row to:
+    \begin{align*}
+      (\PP[i, \front], \PP[i, \tail])
+    \end{align*}
+    This is intuitive: the map pattern with no sub-patterns should only match
+    the empty map constructor, and so we are free to discard the pattern $
+    \PP[i, j] $.
+
+  \item If $ \PP[i, j] $ is a non-binding map pattern with $ n \geq 1 $ (i.e.\ $
+    p_1 \mapsto q_1 \dots p_n \mapsto q_n $), then we delete the current row.
+
+  \item Similarly, for any binding map pattern, we delete the current row
+    (recall from \Cref{sec:pattern-grammar} that the grammar for map patterns
+    enforces $ n \geq 1 $ for binding patterns, to distinguish them from
+    ordinary variable patterns).
+
+\end{enumerate}
+
+Now, consider the $ \mapkey(k) $ constructor, which represents a known-key
+lookup in a map. The specialization procedure here is somewhat more complex
+than for $ \emptymap $. Intuitively, three new columns are created to replace
+the pattern $ \PP[i, j] $ being scrutinized. These correspond to, in order, the
+value bound to key $ k $, the map pattern after removing $ k $ from the map, and
+the original map. We retain the original map as the third column because the set
+of keys may differ across rows, and for rows that may not contain $ k $, we
+should do no work and must specialize on the entire remaining map.
+
+In this section, we write $ \mapp $ as shorthand for the
+pattern syntax $ p_1 \mapsto q_1 \dots p_n \mapsto q_n $. With that in
+mind, the specialization procedure for $ \mapkey(k) $ is as follows:
+
+\begin{enumerate}
+
+  \item If $ \PP[i, j] $ is a non-binding map pattern $ \mapp $, then we rewrite
+    the current row to:
+    \begin{align*}
+      (\PP[i, \front], q_x, \mappPrime , Y, \PP[i, \tail])
+    \end{align*}
+    if there exists a pattern $ p_x $ in $ \vec{p_s} $ such that $ p_x $ is
+    bound, and the canonicalized $ p_x = k $, where $ Y $ is a fresh anonymous
+    variable that does not appear in the current substitution, and $ \mappPrime
+    $ is $ \mapp $ with $ p_x \mapsto q_x $ removed. When this case applies, we
+    must further scrutinize the value bound by $ k $, and the reduced remaining
+    map, but will do no further examination of the rest of the map because of
+    the anonymous variable $ Y $.
+
+  \item Similarly, if $ \PP[i, j] $ is the binding map pattern $ \mapp \; M $,
+    then we rewrite the current row to:
+    \begin{align*}
+      (\PP[i, \front], q_x, \mappPrime \; M , Y, \PP[i, \tail])
+    \end{align*}
+    under the same side condition and fresh variable introductions as above.
+
+  \item If $ \PP[i, j] $ is a non-binding map pattern $ \mapp $, then we rewrite
+    the current row to:
+    \begin{align*}
+      (\PP[i, \front], Y, Z, \PP[i, j], \PP[i, \tail])
+    \end{align*}
+    if there is a $ p_x $ in $ \vec{p_s} $ such that the canonicalized $ p_x $
+    unifies with $ k $, but $ k $ is not in the canonicalized $ p_x $.
+
+  \item Similarly, if $ \PP[i, j] $ is a non-binding map pattern $ \mapp \; M $,
+    then we rewrite the current row to:
+    \begin{align*}
+      (\PP[i, \front], Y, Z, \PP[i, j], \PP[i, \tail])
+    \end{align*}
+    if $ k $ is not in the canonicalized $ p_x $.
+
+  \item Finally, if none of the cases above apply to $ \PP[i, j] $ (i.e.\ for
+    all $ p_x $, either $ p_x $ is not bound, or its canonicalized form does not
+    unify with $ k $), we remove the current row.
+
+\end{enumerate}
+
+Finally, we can consider the $ \mapchoice $ constructor, corresponding to the
+case where the map key being scrutinized is not known. Once again, specializing
+on this constructor generates three new columns in the pattern matrix,
+corresponding to the key pattern and value pattern that are matched, as well as
+the remainder of the map after they are removed.
+
+\begin{enumerate}
+
+  \item If $ \PP[i, j] $ is a binding map pattern $ p \mapsto q \; M $, then we
+    rewrite the current row to:
+    \begin{align*}
+      (\PP[i, \front], p, q, M, \PP[i, \tail])
+    \end{align*}
+
+  \item If $ \PP[i, j] $ is a binding map pattern $ p_1 \mapsto q_1 \dots p_n
+    \mapsto q_n \; M $ with $ n \geq 2 $, then we rewrite the current row to:
+    \begin{align*}
+      (\PP[i, \front], p_1, q_1, \vec{p'_n} \mapsto \vec{q'_n} \; M, \PP[i, \tail])
+    \end{align*}
+    where $ \vec{p'_n} \mapsto \vec{q'_n} $ is all the remaining map pattern
+    elements with $ n > 1 $.
+
+  \item If $ \PP[i, j] $ is a non-binding map pattern $ p_1 \mapsto q_1 \dots p_n
+    \mapsto q_n $ with $ n \geq 1 $ then we rewrite the current row to:
+    \begin{align*}
+      (\PP[i, \front], p_1, q_1, \vec{p'_n} \mapsto \vec{q'_n} , \PP[i, \tail])
+    \end{align*}
+    only if the current row is in the \emph{topmost} priority group. This
+    restriction prevents us from failing to match the first key tried, then
+    immediately dropping down to lower-priority groups (i.e.\ the \emph{pattern}
+    could still match, even if a particular key failed to). Details of the
+    compilation algorithm presented later ensure that lower-priority groups are
+    actually tried in practice.
+
+  \item If $ \PP[i, j] $ is an empty map pattern, we delete the current row (it
+    is impossible to choose an element from an empty map).
+
+  \item For any row $ i $  not in the topmost priority group, we delete that
+    row. As above, this action is safe because of properties of the later
+    compilation step.
+
+\end{enumerate}
+
+As for regular and list patterns, we update the sort and occurrence vectors $
+[s_j] $ and $ [o_j] $ when specializing over map constructors. For the $
+\emptymap $ constructor, we simply erase $ s_j $ and $ o_j $ respectively. For $
+\mapkey(k) $, we replace those elements with vectors:
+\begin{align*}
+  o_j & \to (\val \cdot \pat(k) \cdot o_j, \rem \cdot \pat(k) \cdot o_j, o_j) \\
+  s_j & \to (s^v_j, s_j, s_j)
+\end{align*}
+where $ s^v_j $ is the value sort of the map sort $ s_j $.
+Similarly, for $ \mapchoice $, we rewrite as follows:
+\begin{align*}
+  o_j & \to (\key \cdot o_j, \val \cdot o_j, \rem \cdot o_j) \\
+  s_j & \to (s^k_j, s^v_j, s_j)
+\end{align*}
+
+\end{definition}
+
+\begin{definition}{Default decomposition on map patterns.}
+
+We define the default decomposition for columns with a map sort as follows:
+
+\begin{enumerate}
+
+  \item If $ \PP[i, j] $ is a non-binding map pattern with $ n = 0 $, and $
+    \emptymap \in \patsig(s_j, j) $, we delete the current row.
+
+  \item If $ \PP[i, j] $ is a non-binding map pattern with $ n > 0 $, or a
+    binding map pattern with $ n \geq 0 $, and $ \emptymap \in \patsig(s_j, j)
+    $, we do not rewrite the current row.
+
+  \item If $ \PP[i, j] $ is a non-binding map pattern $ \mapp $, or a binding
+    map pattern with $ n \geq 0 $, and $ \mapkey(k) \in \patsig(s_j, j) $, but
+    the canonicalized $ \vec{p_s} $ does not contain $ k $, we do not rewrite
+    the current row.
+
+  \item If $ \PP[i, j] $ is not an empty pattern (i.e.\ it is binding, or is
+    non-binding with $ n > 0 $), $ \mapchoice \in \patsig(s_j, j) $, and row $ i
+    $ is not in the topmost priority group, then we do not rewrite the current
+    row.
+
+  \item In all other cases, we delete the current row.
+
+\end{enumerate}
+
+\end{definition}
+
+\subsection{Set Patterns} \label{sec:decomp:set}
+
+\begin{definition}{Specialization and default decomposition on set patterns.}
+
+The specialization and default decompositions for set sorts are almost identical
+to those for map sorts, and so for brevity we avoid a full definition. The only
+substantive change is that wherever a column corresponding to a mapped value
+is generated for map decompositions, no column is generated for sets. For
+example, the occurrence vectors that replace $ o_j $ for $ \mapkey(k) $ and $
+\mapchoice $ respectively for set sorts are:
+\begin{align*}
+  o_j & \to (\rem \cdot \pat(k) \cdot o_j, o_j)
+      && \mapkey(k) \\
+  o_j & \to (\key \cdot o_j, \rem \cdot o_j)
+      && \mapchoice
+\end{align*}
+
+\end{definition}
+
+\section{Compiling to Decision Trees} \label{sec:compile}
+
+We have now defined specialization and default decompositions for collection
+sorts. Again following the style of \citet{Maranget2008}, we now define a
+\emph{decision tree} structure that represents the actual runtime decisions made
+when decomposing a pattern matrix. A decision tree can be interpreted
+to produce an action identifier and a set of variable bindings (if the
+corresponding pattern matching problem is successful); the actual implementation
+used by \KL generates equivalent machine code from a tree structure for
+efficiency.
+
+
+\subsection{Decision Trees} \label{sec:dt-adt}
+
+Decision trees are specified by the following term grammar:
+\begin{align*}
+  \DT \Coloneqq & \: \Fail \\
+      \mid      & \: \Success(a, [(o, s)]) \\
+      \mid      & \: \Switch(o, s, [(c, \DT)], DT?) \\
+      \mid      & \: \CheckNull(o, s, \DT, \DT) \\
+      \mid      & \: \FunctionDT(o, f, [(o, s)], s, \DT) \\
+      \mid      & \: \Pattern(o, s, p, \DT) \\
+      \mid      & \: \IterHasNext(o, s, \DT, \DT)
+\end{align*}
+where $ a $ is an action identifier (i.e.\ an integer), $ o $ is an occurrence,
+$ s $ is a sort, $ c $ is a constructor, $ p $ is a pattern, and $ f $ is a
+function. $ [...] $ represents lists, and $ ? $ is an optional argument to a term.
+
+\subsection{Evaluation}
+
+\begin{algorithm*}
+  
+  \caption{
+    Evaluation semantics for our decision tree structure. The
+    type Subst is a mapping from occurrences to either concrete patterns or
+    iterators into maps and sets. Any occurrences not explicitly set in the
+    substitution map to None. The initial substitution $ S $ maps the empty
+    occurrence $ \epsilon $ to the top-level pattern. The \textsc{Parent}
+    function returns the parent node of a decision tree node; for the $
+    \IterHasNext $ case, this will be a $ \FunctionDT $ node that retries the
+    matching process with the next element in the collection.
+  }
+  \label{alg:tree-evaluate}
+
+  \footnotesize
+  \begin{algorithmic}[1]
+    \Function{Evaluate}{DT $dt$, Subst $S$, [(DT, Subst)] $choices$} $\to$ (Action, Subst)?
+      \Case{$dt$}
+
+        \CaseItem{$\Success(A, \_)$}{\ret $ (A, S) $}
+
+        \CaseItem{$\Fail$}{}
+        \Indent
+          \Case{$choices$}
+            \CaseItem{$[]$}{\ret None}
+            \CaseItem{$(dt', S') :: tail$}{\ret $\textsc{Evaluate}(dt', S', tail)$}
+          \EndCase
+        \EndIndent
+
+        \CaseItem{$\Switch(o, s, cases, default)$}{}
+        \Indent
+          \State $ c \gets $ the constructor of $ S[o] $
+          \If{$ c \in cases $}
+            \For{$ i = 1 $ to $ \textsc{Arity}(a) $}
+              \State $ S[i \cdot o] \gets i^{\text{th}} $ child of $ S[o] $
+            \EndFor
+            \State \ret $ \textsc{Evaluate}(\text{decision tree for } c, S, choices )$
+          \Else
+            \State \ret $ \textsc{Evaluate}(default, S, choices) $
+          \EndIf
+        \EndIndent
+
+        \CaseItem{$\CheckNull(o, s, case_{true}, case_{false})$}{}
+        \Indent
+          \State $ dt' \gets S[o] \text{ is None} \: ? \: case_{true} : case_{false} $
+          \State \ret $ \textsc{Evaluate}(dt', S, choices) $
+        \EndIndent
+
+        \CaseItem{$\FunctionDT(o, f, args, s, dt')$}{}
+        \Indent
+          \State $ S[o] \gets f([S[a] \mid a \in args]) $
+          \State \ret $ \textsc{Evaluate}(dt, S, choices) $
+        \EndIndent
+
+        \CaseItem{$\Pattern(o, s, pat, dt')$}{}
+        \Indent
+          \State $ S[o] \gets pat $ substituted using $ S $
+          \State \ret $ \textsc{Evaluate}(dt, S, choices) $
+        \EndIndent
+
+        \CaseItem{$\IterHasNext(o, s, case_{true}, case_{false})$}{}
+        \Indent
+          \If{$ S[o] $ is None}
+            \State \ret $ \textsc{Evaluate}(case_{false}, S, \textsc{Parent}(dt) :: choices) $
+          \Else
+            \State \ret $ \textsc{Evaluate}(case_{true}, S, choices) $
+          \EndIf
+        \EndIndent
+      \EndCase
+    \EndFunction
+  \end{algorithmic}
+
+\end{algorithm*}
+
+The exact semantics of decision trees is given in
+\Cref{alg:tree-evaluate}, but a brief summary is as follows: $ \Fail $ and $
+\Success $ are leaf nodes, where a pattern
+has either failed to match a term, or has succeeded and produces an action to be
+taken (here, an integer representing a \K rewrite rule to be applied to the term
+being scrutinized). $ \Switch $ is the basic unit of control flow for regular
+sorts in decision trees, representing an $n$-ary case split across a set of
+constructors.
+
+$ \CheckNull $ dispatches to one of two sub-trees depending on whether an
+occurrence bound to an optional value is None. $ \FunctionDT $ is used to
+capture a particular function to be evaluated when the decision tree itself is
+(e.g.\ to return the length of a list argument), and bind the result into the
+substitution. $ \Pattern $, similarly, binds a particular pattern to an
+occurrence. Finally $ \IterHasNext $ is used to implement backtracking through
+map and set collections.
+
+
+The \textsc{Evaluate} algorithm is largely responsible (at a high level) for
+ensuring that occurrences are bound to the correct concrete patterns or
+iterators before case splits are performed on the top-level term. Backtracking
+is implemented by maintaining a stack of resumption points from which evaluation
+can continue should matching fail. This backtracking is used when choosing
+elements from maps and sets: if the chosen element causes matching to fail, then
+prepending the parent node means that the match can be resumed with the next
+element in the collection.  This algorithm is abstract; for efficiency, our
+implementation of \KL instead transforms a decision tree into native code.
+
+\subsection{Compilation}
+
+With this definition of decision trees in hand, we can now define a compilation
+algorithm from the initial pattern matrix (given in \Cref{sec:matrix-init}) to a
+decision tree. This algorithm follows the structure suggested by
+\citet{Maranget2008}; if there is a topmost-priority row with only variable
+patterns (i.e.\ one that will always match), we compile that row and remove it.
+Otherwise, we heuristically select a column and decompose it. The extensions
+described in \Cref{sec:decomp} require additional state for variable binding and
+runtime collections be maintained while doing so. This section provides a
+high-level overview of this procedure.
+
+
+
+\paragraph{Lists\\} Lists in \KL behave similarly to regular constructors in the
+\textsc{CC} function described by Maranget, but require a run-time check to
+establish their length before they can be matched. Additionally, we must ensure
+that sufficient elements are available at their head and tail to bind the
+relevant variables. These run-time checks correspond to \textsc{Function} nodes
+in a decision tree that retrieve those elements at run-time.
+
+
+\paragraph{Maps and sets\\}
+
+The main difficulty in decomposing a map is that we may need to \emph{backtrack}
+through the collection if the constructor $ \mapchoice $ appears in the current
+column signature. To do so, we construct an $ \iter $ occurrence and bind it to
+the correct run-time part of the collection. Additionally, we bind occurrences
+for the key and value selected, along with the remainder of the collection after
+removing that key. If there is no $ \mapchoice $ in the column signature, but
+there is a $ \mapkey(k) $, no backtracking (and therefore binding of iterators)
+is required, but we must check whether that key is present at run time (this
+check is analogous to determining whether a list has sufficient elements at
+run-time to match a pattern).
+
+
+The decomposition procedure for sets is very similar; it does not require that
+values are bound to occurrences (only keys, remainders and iterators), and
+instead of extracting values from a map, membership tests for a key are
+sufficient.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Heuristics\\} \label{sec:heuristics}
+
+Two important heuristic choices remain in our decision tree compilation
+procedure. \citet{Maranget2008} details several methods by which the
+decomposition column $ j $ should be chosen first; for \KL, we adapt the
+\texttt{qbaL} heuristic from that work. While we have not evaluated it formally,
+our experience of implementing \KL suggests that this choice strikes an
+appropriate balance between ease of implementation, compilation time and
+performance of generated code.
+
+One small modification to the \texttt{q} (constructor prefix) heuristic was
+required. Because row priority in \KL is not a total ordering, our definition of
+\texttt{q} does not stop counting after the first non-constructor row. Rather,
+we also count any constructor patterns in the same group as that row
+(effectively stopping after the first \emph{group} with a wildcard entry). The
+\texttt{b}, \texttt{a} and \texttt{L} heuristics could be used unmodified.
+
+
+\paragraph{Key selection\\}
+
+In \Cref{sec:decomp:map}, our definition of $ \patsig $ relied on the $
+\bestkey $ function to compute the signature of a map- or set-sorted column.
+Before we can identify the best column $ j $ to decompose on, we must identify
+the best key $ k $ to form the column signature for maps and sets.
+The high-level principle by which we select keys is that we want to avoid set
+and map \emph{choices}; these operations can cause the decision tree to
+backtrack, which can be potentially very slow. Instead, we prefer to specialize
+on bound key lookups where possible.
+
+We therefore define $ \bestkey $ as follows:
+\begin{align*}
+  \bestkey(j) & = \mapchoice && \text{if no bound keys in column } j \\
+  \bestkey(j) & = \mathsf{argmin}_j \; c(j) && \text{otherwise}
+\end{align*}
+where $ c(j) $ is the \texttt{qbaL} heuristic cost function described in the
+next section, and $ \mathsf{argmin}_j $ will return the value of $ j $ for which
+$ c(j) $ is lowest.
+
+
+
+
+
+
+
+
+
+
+
+\paragraph{Priority inversion\\}
+
+Consider the following partial pattern matrix, with the second row giving the
+hypothetical heuristic scores for the remainder of each column:
+\begin{align*}
+  \begin{pmatrix}
+    a(X) & X \mapsto Y & b \mapsto d \\
+    c(1) = 1 & c(2) = 9 & c(3) = 6 \\
+    \dots & \dots & \dots
+  \end{pmatrix}
+\end{align*}
+Here, column 2 has $ \{ \mapchoice \} $ as its pattern signature, because it
+does not have any map keys that are bound, and so will not be selected for
+decomposition ahead of columns 1 and 3.  However, it has the best heuristic
+score, and so would produce the smallest compiled tree.
+
+We can see that while decomposing on column 1 has the lowest heuristic score,
+doing so would produce a binding for $ X $ that would allow column 2 to be
+selected. This is an instance of \emph{priority inversion}: column 2 is waiting
+for column 1 to be decomposed. To address this, we set the score of each column
+to be the highest score of any column that depends on it. A column $ j $ depends
+on a column $ k $ if there exists a row $ i $ and variable $ X $ such that $ X $
+occurs in $ \PP[i, k] $, and $ X $ occurs in a key position in $ \PP[i, j] $.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Evaluation} \label{sec:eval}
+Our goal when designing and implementing \KL was to produce a fast
+term-rewriting backend for \K's core language. In this section, we evaluate our
+success by benchmarking interpreters for specific programming languages generated by \K using \KL in two benchmarks: the Blockchain Tests from the Ethereum test suite \cite{ethereum-tests} and a synthetic benchmark with 1,000 swap operations on an ERC20 token~\cite{1kswapscode}. Our results are surprisingly positive; we find that:
+
+\begin{enumerate}
+    \item The \K implementation of EVM~\cite{HSZ+18} currently can reach only 1.35x slower execution than Geth, the Go official implementation of EVM~\cite{geth} which is the most adopted Ethereum client, widely used by the community~\cite{ethernodes}.
+    \item The language interpreters generated through \KL have the potential to be as good as the top and widely used Ethereum clients. By using Compositional Symbolic Execution (CSE) it is possible to outperform Geth by 1.575x.
+\end{enumerate}
+
+
+
+
+All experiments were conducted on a machine with a 13th Gen Intel\textsuperscript{\tiny\textregistered} Core™ i9-13900K 24-Core CPU (32 threads), with Intel\textsuperscript{\tiny\textregistered} UHD Graphics 770 (Integrated with CPU) and 64 GB RAM.
+
+\subsection{Evaluation of {\K}EVM against Geth}
+
+To evaluate the performance of \KL as the primary tool for implementing programming languages, we first considered the Ethereum Virtual Machine (EVM) bytecode language. The Ethereum Virtual Machine is a stack-based virtual machine used as the execution layer for the Ethereum blockchain.
+
+We used \KL to generate an EVM interpreter from a state-of-the-art \K definition of the language: KEVM~\cite{HSZ+18}. We compared the performance of the generated {\K}EVM interpreter against the most used EVM client: Geth -- the official Go implementation of EVM.
+
+Each interpreter ran a selected set of tests from the official Ethereum test suite. The official test suite features three test primary categories:
+\begin{itemize}
+    \item \textbf{Blockchain tests} for testing the verification of a sequence of blocks.
+    \item \textbf{State transition tests} for testing the verification of a single transaction.
+    \item \textbf{VM tests} for testing the functionality of the EVM in isolation.
+\end{itemize}
+
+The official blockchain category groups general state tests into 58 subcategories.
+We took 58 of these tests to evaluate the performance of each interpreter, comparing the overall wall time and VM time, the actual time spent executing EVM opcodes. We only dropped the `vmPerformance` tests from `VMTests` for the sake of reproducibility.
+
+
+We also evaluated the implementations on a performance-focused subset of the
+Blockchain test, for which the results are shown in \Cref{tab:geth-performance} and \Cref{tab:kevm-performance}. Each
+of the implementations provides a different interface for testing; we
+used the default test runner for each implementation to produce these results.
+ \begin{itemize}
+     \item For {\K}EVM, we used the \code{poetry pytest} implementation to execute the 58 \code{GeneralStateTests} from the Blockchain directory.
+
+     \item For Go Ethereum, we used an instrumented version of the `go test` command to execute the same set of tests from the Blockchain directory in a single thread.
+\end{itemize}
+
+
+
+We used an instrumented version of {\K}EVM v1.0.675 with K v7.1.99 and Geth v1.13.14 to execute all tests.
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{l|l|l}
+        \textbf{Benchmark} & \textbf{Wall time} & \textbf{VM time} \\ \hline
+        GeneralStateTests & 1072.95s & 531.40 \\
+    \end{tabular}
+    \caption{Performance of the {\K}EVM interpreter generated with \KL on Ethereum BlockchainTests} 
+    \label{tab:kevm-performance}
+\end{table}
+
+The Go implementation of EVM has more than one execute mode, we decided to execute all and present all results here for the same of transparency.
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{l|l|l|l|l}
+        \multicolumn{1}{c}{} & &\textbf{Wall time} & \textbf{VM time} \\ \hline
+        \textbf{Hash Mode} & \textbf{Snapshotter} & 415.348s & 199.015s \\
+        ~ & \textbf{No Snapshotter} & 460.063s & 201.575s \\  \hline
+        \textbf{Path Mode} & \textbf{Snapshotter} & 406.074s & 197.926s \\ 
+        ~ & \textbf{No Snapshotter} & 446.882s & 392.253s \\ 
+    \end{tabular}
+    \caption{Performance of the Geth interpreter on Ethereum GeneralStateTests from BlockchainTests}
+    \label{tab:geth-performance}
+\end{table}
+
+In the best case of Geth, {\K}EVM performs 2.68x slower, whereas in the worst case, {\K}EVM is only 1.35x slower than the most used EVM client considering the VM time of execution for both interpreters.
+
+
+\subsection{Evaluation of 1K Swaps in Different Programming Language Interpreters}
+
+The second benchmark we used to evaluate the performance of \KL generated interpreters uses an implementation of the UniSwap V2 \cite{Adams2020UniswapVC} contract. In particular, we measure the performance of 4 different executions of the swap operation between 2 different ERC20 tokens using this contract.
+
+\clearpage
+
+
+
+
+
+\lstdefinelanguage{Solidity}{
+	keywords=[1]{anonymous, assembly, assert, balance, break, call, callcode, case, catch, class, constant, continue, constructor, contract, debugger, default, delegatecall, delete, do, else, emit, event, experimental, export, external, false, finally, for, function, gas, if, implements, import, in, indexed, instanceof, interface, internal, is, length, library, log0, log1, log2, log3, log4, memory, modifier, new, payable, pragma, private, protected, public, pure, push, require, return, returns, revert, selfdestruct, send, solidity, storage, struct, suicide, super, switch, then, this, throw, transfer, true, try, typeof, using, value, view, while, with, addmod, ecrecover, keccak256, mulmod, ripemd160, sha256, sha3}, 
+	keywordstyle=[1]\color{blue}\bfseries,
+	keywords=[2]{address, bool, byte, bytes, bytes1, bytes2, bytes3, bytes4, bytes5, bytes6, bytes7, bytes8, bytes9, bytes10, bytes11, bytes12, bytes13, bytes14, bytes15, bytes16, bytes17, bytes18, bytes19, bytes20, bytes21, bytes22, bytes23, bytes24, bytes25, bytes26, bytes27, bytes28, bytes29, bytes30, bytes31, bytes32, enum, int, int8, int16, int24, int32, int40, int48, int56, int64, int72, int80, int88, int96, int104, int112, int120, int128, int136, int144, int152, int160, int168, int176, int184, int192, int200, int208, int216, int224, int232, int240, int248, int256, mapping, string, uint, uint8, uint16, uint24, uint32, uint40, uint48, uint56, uint64, uint72, uint80, uint88, uint96, uint104, uint112, uint120, uint128, uint136, uint144, uint152, uint160, uint168, uint176, uint184, uint192, uint200, uint208, uint216, uint224, uint232, uint240, uint248, uint256, var, void, ether, finney, szabo, wei, days, hours, minutes, seconds, weeks, years},	
+	keywordstyle=[2]\color{teal}\bfseries,
+	keywords=[3]{block, blockhash, coinbase, difficulty, gaslimit, number, timestamp, msg, data, gas, sender, sig, value, now, tx, gasprice, origin},	
+	keywordstyle=[3]\color{violet}\bfseries,
+	identifierstyle=\color{black},
+	sensitive=true,
+	comment=[l]{//},
+	morecomment=[s]{/*}{*/},
+	commentstyle=\color{gray}\ttfamily,
+	stringstyle=\color{red}\ttfamily,
+	morestring=[b]',
+	morestring=[b]"
+}
+
+\lstset{
+	language=Solidity,
+	backgroundcolor=\color{white},
+	extendedchars=true,
+	basicstyle=\footnotesize\ttfamily,
+	showstringspaces=false,
+	showspaces=false,
+	numbers=left,
+	numberstyle=\footnotesize,
+	numbersep=9pt,
+	tabsize=2,
+	breaklines=true,
+	showtabs=false,
+	captionpos=b,
+        linewidth=12cm,
+	frame=single,
+	frameround=tttt
+}
+\begin{lstlisting}[language=Solidity, label={lst:uniswapV2swap}, caption={UniswapV2SwapTest Solidity Code}, captionpos=b]
+contract UniswapV2SwapTest {
+
+    UniswapV2Swap private _uni;
+    WETHMock private _weth;
+    DAIMock private _dai;
+    USDCMock private _usdc;
+
+    function testSwapLoop() public {
+        _weth = new WETHMock();
+        _dai = new DAIMock();
+        _usdc = new USDCMock();
+        _uni = new UniswapV2Swap(address(_weth), address(_dai), address(_usdc));
+        for (uint i = 0; i < 1000; i++) {
+          testSwapSingleHopExactAmountIn();
+	    }
+    }
+
+    function testSwapSingleHopExactAmountIn() public {
+        uint256 wethAmount = 1e18;
+
+        _weth.deposit{value: 2*wethAmount}();
+        _weth.approve(address(_uni), 2*wethAmount);
+        _dai.mint(address(this), wethAmount);
+        _dai.approve(address(_uni), wethAmount);
+        
+        _weth.transfer(_uni.router().get_local_pair(address(_weth), address(_dai)), wethAmount);
+        _dai.transfer(_uni.router().get_local_pair(address(_weth), address(_dai)), wethAmount);
+
+        _uni.router().sync_local_pair(address(_weth), address(_dai));
+
+        uint256 daiAmountMin = 1;
+        uint256 daiAmountOut = _uni.swapSingleHopExactAmountIn(wethAmount, daiAmountMin);
+
+        assert(daiAmountOut >= daiAmountMin);
+    }
+}
+\end{lstlisting}
+
+The \nameref{lst:uniswapV2swap} uses 3 ERC20 tokens and the Uni-swapV2Swap contract and implements 2 tests: 
+\begin{itemize}
+    \item \code{testSwapSingleHopExactAmountIn} responsible for testing a single swap operation between the ERC20 tokens \code{weth} and \code{dai}.
+    \item \code{testSwapLoop} responsible for instantiating 3 ERC20 tokens and the Uni-swapV2Swap contract with them to call the test above 1,000 times.
+\end{itemize}
+The \code{testSwapLoop} is the main test we use for measuring performance in this benchmark.
+
+As mentioned, in this experiment we are measuring 4 approaches:
+\begin{itemize}
+    \item Geth: The Go Official implementation of EVM 
+    \item {\K}EVM: The \K official implementation of EVM.
+    \item {\K}-Solidity without CSE: The \K implementation of the solidity semantics, \K-Solidity, without the CSE optimization.
+    \item {\K}-Solidity with CSE: The same \K-Solidity semantics, but with the CSE optimization.
+\end{itemize}
+
+\paragraph{The CSE — Compositional Symbolic Execution\\} Optimization Technique in \K is originally used by Kontrol in its Symbolic Summarizer to identify common paths taken multiple times that can be saved as an axiom to be proved only once and then used to compose other proofs, saving several execution steps. 
+
+In the context of concrete semantic-based execution, we use this idea in a bottom-up approach to compose multiple small execution steps, or “rewrite rules”, into a single step, that always performs the same operations as the underlying small steps would, regardless of the input. This single step becomes a new rewrite rule in the programming language semantics. Including these rules in the semantics results in fewer steps needed during program execution when these rules match, and thus to increased performance.
+
+For this experiment, we manually searched for opportunities to apply this technique to compose semantics rules that correspond to multiple steps of the original semantics rules. All opportunities that were able to compose at least 30 execution steps into one single rule were taken. This can and will be automated.
+
+Using CSE, we will show that we can now outperform Geth execution for the benchmark of 1,000 swaps by more than 1.57x. One of the most amazing characteristics of this technique is that it is language-agnostic, so all future semantics developed using the \K Framework and executed within the \KL can use it for optimizing its execution.
+
+
+\begin{table}[!ht]
+    \centering
+    \label{tab:semantics-performance}
+    \begin{tabular}{l | c | c | c}
+    
+        \textbf{Implementation} & \textbf{Time to run 1K swaps} & \textbf{Overhead} & \textbf{Speed} \\ \hline
+        Geth & 0.241s & 1x & 100\
+        K[Solidity] with CSE & 0.153s & 0.63x & 157.5\
+        K[Solidity] & 0.266s & 1.10x & 90.6\
+        KEVM & 8.787s & 36.5x & 0.03\
+    \end{tabular}
+    \caption{Performance of different approaches to execute 1K Swaps}
+\end{table}
+
+\Cref{tab:semantics-performance} shows the performance of the four different approaches to running \code{testSwapLoop}. We considered Geth as the baseline, and we can see that in this test {\K}EVM doesn't deliver the same performance we observed in the Ethereum test suite; we considered this an outlier example. The Solidity semantics, on the other hand, reaches a comparable performance with Geth even without the CSE optimization. Finally, the Solidity semantics with CSE show us the outstanding potential that only the semantics-based execution through the \KL is able to deliver to the users by outperforming the most used Ethereum client, being 57.5\
+
+These tests were executed in the same machine with a 13th Gen Intel\textsuperscript{\tiny\textregistered} Core™ i9-13900K 24-Core CPU (32 threads), with Intel\textsuperscript{\tiny\textregistered} UHD Graphics 770 (Integrated with CPU) and 64 GB RAM.
+
+Geth experiments were conducted using its \code{1.13.14} version and Go \code{v1.22.0}.
+
+Solidity and KEVM experiments were conducted using \K \code{v7.1.166}. KEVM used its version \code{1.0.678}. 
+
+\section{Conclusion}
+The \K framework is a powerful method for semantics-based language development; a full suite of specialized tools can be extracted automatically by \K from a single definition of a language's formal operational semantics. One of these tools is a concrete interpreter, for which execution performance is an important goal for \K.
+
+This paper has provided a high-level overview of \KL, the backend for compiling \K language definitions into fast concrete interpreters. It has also motivated and presented our innovations towards addressing one of the costliest bottlenecks for the generated interpreters' performance: compilation of pattern matching problems to native code. The compilation method presented in this paper extends the state-of-the-art method for decision tree-based compilation with support for a practical subset of ACUI pattern matching, supporting the use of fast runtime collection data structures by \K language definitions. Additionally, it supports conditional patterns and variable bindings.
+
+Our bespoke decision tree-based compilation algorithm is shown to result in exceptionally performant interpreters for \K definitions. The generated interpreter from a \K definition of EVM is between 1.35x to 2.68x slower than GEth, the most widely used interpreter for EVM in production settings. Moreover, using CSE, a technique uniquely available to semantic-based execution, our generated interpreter outperforms GEth: GEth is 1.57x slower than our CSE interpreter.
+
+This paper does not cover the full technical depth of \KL that has accrued over the course of our work on it. Some aspects of the tool that have not been described in detail in this paper include the efficient unsorted term rewriting engine used to execute programs, and a novel pattern-matching optimization that takes advantage of \K-specific knowledge to trade off space and time during the compilation process.
+
+\clearpage
+\bibliography{refs}
+
+\end{document}
